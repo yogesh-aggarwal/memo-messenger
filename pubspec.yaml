@@ -30,6 +30,8 @@ dependencies:
   rxdart: ^0.24.1
   google_fonts:
   liquid_swipe:
+  contacts_service:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:

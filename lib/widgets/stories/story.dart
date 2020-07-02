@@ -6,17 +6,22 @@ class AddStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 10),
-      child: CircleAvatar(
-        backgroundColor: Colors.green[50],
-        child: Icon(
-          Icons.add,
-          color: Colors.black,
-          size: storyRadius,
-        ),
-        radius: storyRadius,
-      ),
-    );
+        margin: EdgeInsets.only(right: 10),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+          decoration: BoxDecoration(
+            color: Colors.green[100],
+            borderRadius: BorderRadius.circular(13),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(13),
+            child: Icon(
+              Icons.add,
+              color: Colors.green[800],
+              size: storyRadius,
+            ),
+          ),
+        ));
   }
 }
 
@@ -32,11 +37,16 @@ class _StoryState extends State<Story> {
       padding: EdgeInsets.symmetric(
         horizontal: MediaQuery.of(context).size.width * 0.015,
       ),
-      child: CircleAvatar(
-        backgroundImage: NetworkImage(
-          "https://bit.ly/38sXcEA",
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(13),
+        child: Image(
+          image: NetworkImage(
+            "https://bit.ly/38sXcEA",
+          ),
+          width: 60,
+          height: 60,
+          fit: BoxFit.cover,
         ),
-        radius: storyRadius,
       ),
     );
   }

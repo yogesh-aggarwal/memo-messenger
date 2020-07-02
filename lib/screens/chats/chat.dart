@@ -49,11 +49,14 @@ class _ChatState extends State<Chat> {
         ),
         child: Row(
           children: <Widget>[
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                "https://randomuser.me/api/portraits/women/79.jpg",
+            ClipRRect(
+              borderRadius: BorderRadius.circular(13),
+              child: Image(
+                image: NetworkImage(
+                  "https://randomuser.me/api/portraits/women/79.jpg",
+                ),
+                width: 50,
               ),
-              radius: 25,
             ),
             Expanded(
               child: Container(
