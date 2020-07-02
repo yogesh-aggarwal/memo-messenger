@@ -7,7 +7,7 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  String title = "Chats";
+  String title =  "Chats";
 
   @override
   Widget build(BuildContext context) {

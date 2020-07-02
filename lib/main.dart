@@ -1,6 +1,8 @@
 import 'package:falcon/screens/chats/chats.dart';
+import 'package:falcon/screens/chats/screen.dart';
+import 'package:falcon/screens/people/screen.dart';
 import 'package:falcon/services/data.service.dart';
-import 'package:falcon/widgets/navbar.dart';
+import 'package:falcon/screens/people/navbar.dart';
 import 'package:falcon/widgets/stories/stories.dart';
 import 'package:flutter/material.dart';
 
@@ -31,55 +33,11 @@ class _FalconState extends State<Falcon> {
         child: Scaffold(
           body: PageView(
             children: <Widget>[
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Stories(),
-                    Divider(height: 40),
-                    Chats(),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Navbar(),
-                    Stories(),
-                    Divider(height: 40),
-                    Chats(),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Navbar(),
-                    Stories(),
-                    Divider(height: 40),
-                    Chats(),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Navbar(),
-                    Stories(),
-                    Divider(height: 40),
-                    Chats(),
-                  ],
-                ),
-              ),
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Navbar(),
-                    Stories(),
-                    Divider(height: 40),
-                    Chats(),
-                  ],
-                ),
-              ),
+              PeopleScreen(),
+              ChatScreen(),
+              ChatScreen(),
+              ChatScreen(),
+              ChatScreen(),
             ],
             controller: Data.pageController,
             onPageChanged: (index) {
