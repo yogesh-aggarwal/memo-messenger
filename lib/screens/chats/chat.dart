@@ -83,6 +83,20 @@ class _ChatState extends State<Chat> {
                   ],
                 ),
               ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.green[500],
+                borderRadius: BorderRadius.circular(5),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+              child: Text(
+                "26",
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             )
           ],
         ),
