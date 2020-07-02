@@ -1,3 +1,5 @@
+import 'package:falcon/screens/chats/chats.dart';
+import 'package:falcon/widgets/bottomBar.dart';
 import 'package:falcon/widgets/navbar.dart';
 import 'package:flutter/material.dart';
 
@@ -12,8 +14,14 @@ class Falcon extends StatelessWidget {
       home: SafeArea(
         child: Scaffold(
           body: Container(
-            child: Navbar(),
+            child: Column(
+              children: <Widget>[
+                Navbar(),
+                Chats(),
+              ],
+            ),
           ),
+          bottomNavigationBar: BottomBar(),
         ),
       ),
     );

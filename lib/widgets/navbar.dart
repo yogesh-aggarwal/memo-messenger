@@ -12,12 +12,15 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(
+        vertical: 10,
+        horizontal: MediaQuery.of(context).size.width * 0.05,
+      ),
+      margin: EdgeInsets.only(bottom: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(left: 25),
             child: Text(
               this.title,
               style: GoogleFonts.poppins(
@@ -27,7 +30,6 @@ class _NavbarState extends State<Navbar> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(right: 25),
             child: Icon(Icons.search),
           ),
         ],
