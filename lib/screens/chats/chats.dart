@@ -49,14 +49,15 @@ class _ChatsState extends State<Chats> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: this.chats.length,
-        itemBuilder: (context, index) {
-          return Chat(chats[index]);
-        },
+      child: Expanded(
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: this.chats.length,
+          itemBuilder: (context, index) {
+            return Chat(chats[index]);
+          },
+        ),
       ),
-    ));
+    );
   }
 }

@@ -31,7 +31,6 @@ class _ChatState extends State<Chat> {
   }
 
   String getName(int phone) {
-    print("frdk");
     return isInContacts(phone)
         ? this.chat["name"]
         : "${this.chat['name']} (${this.chat['phoneNo']})";
@@ -56,28 +55,30 @@ class _ChatState extends State<Chat> {
               ),
               radius: 25,
             ),
-            Container(
-              margin: EdgeInsets.only(left: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    this.getName(this.chat["phoneNo"]),
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.only(left: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      this.getName(this.chat["phoneNo"]),
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "jiofHJOGGFHJG;MHGFKMHJGFKLHJMGFKLNJGFKLNJGFKLNM ,GFJNGLKJGHLMNJ,GH.MNJGHKLNJGHKLNG",
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 15,
+                    Text(
+                      "jiofHJOGGFHJG;MHGFKMHJGFKLHJMGFKLNJGFKLNJGFKLNM ,GFJNGLKJGHLMNJ,GH.MNJGHKLNJGHKLNG",
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 15,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    // overflow: TextOverflow.clip,
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],

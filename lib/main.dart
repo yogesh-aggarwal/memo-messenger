@@ -1,10 +1,9 @@
-import 'package:falcon/screens/chats/chats.dart';
 import 'package:falcon/screens/chats/screen.dart';
+import 'package:falcon/screens/labels/screen.dart';
 import 'package:falcon/screens/people/screen.dart';
 import 'package:falcon/services/data.service.dart';
-import 'package:falcon/screens/people/navbar.dart';
-import 'package:falcon/widgets/stories/stories.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(Falcon());
@@ -17,6 +16,10 @@ class Falcon extends StatefulWidget {
 
 class _FalconState extends State<Falcon> {
   int navCurrentIndex = 2;
+  var bottomNavTextStyle = GoogleFonts.poppins(
+    color: Colors.green[800],
+    fontWeight: FontWeight.w600,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class _FalconState extends State<Falcon> {
           body: PageView(
             children: <Widget>[
               PeopleScreen(),
-              ChatScreen(),
+              LabelsScreen(),
               ChatScreen(),
               ChatScreen(),
               ChatScreen(),
@@ -50,41 +53,41 @@ class _FalconState extends State<Falcon> {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.people_outline, color: Colors.green[800]),
-                title: Text(""),
+                title: Text("People", style: this.bottomNavTextStyle),
                 activeIcon: Icon(Icons.people, color: Colors.green[800]),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.label_outline, color: Colors.green[800]),
-                title: Text(""),
+                title: Text("Lables", style: this.bottomNavTextStyle),
                 activeIcon: Icon(Icons.label, color: Colors.green[800]),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.chat_bubble_outline, color: Colors.green[800]),
-                title: Text(""),
+                title: Text("Chats", style: this.bottomNavTextStyle),
                 activeIcon: Icon(Icons.chat_bubble, color: Colors.green[800]),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.outlined_flag, color: Colors.green[800]),
-                title: Text(""),
+                title: Text("Call", style: this.bottomNavTextStyle),
                 activeIcon: Icon(Icons.flag, color: Colors.green[800]),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline, color: Colors.green[800]),
-                title: Text(""),
+                title: Text("Profile", style: this.bottomNavTextStyle),
                 activeIcon: Icon(Icons.person, color: Colors.green[800]),
               ),
             ],
             currentIndex: this.navCurrentIndex,
             elevation: 0,
-            type: BottomNavigationBarType.fixed,
+            // type: BottomNavigationBarType.fixed,
             onTap: (index) {
               setState(() {
                 this.navCurrentIndex = index;
 
                 Data.pageController.animateToPage(
                   index,
-                  duration: Duration(seconds: 1),
-                  curve: Curves.easeInOutQuad,
+                  duration: Duration(milliseconds: 200),
+                  curve: Curves.easeInOut,
                 );
               });
             },
