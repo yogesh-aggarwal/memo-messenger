@@ -1,5 +1,5 @@
 import 'package:falcon/screens/calls/screen.dart';
-import 'package:falcon/screens/chats/screen.dart';
+import 'package:falcon/screens/chats/chats/screen.dart';
 import 'package:falcon/screens/labels/screen.dart';
 import 'package:falcon/screens/people/screen.dart';
 import 'package:falcon/screens/profile/screen.dart';

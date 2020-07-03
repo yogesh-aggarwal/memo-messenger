@@ -1,4 +1,5 @@
 import 'package:contacts_service/contacts_service.dart';
+import 'package:falcon/screens/chats/view/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +26,9 @@ class _PersonState extends State<Person> {
         style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
       ),
       subtitle: Text(
-        contact.phones.toList()[0].value,
+        contact.phones.toList().length != 0
+            ? contact.phones.toList()[0].value
+            : "",
         style: GoogleFonts.poppins(fontWeight: FontWeight.w500),
       ),
       leading: CircleAvatar(

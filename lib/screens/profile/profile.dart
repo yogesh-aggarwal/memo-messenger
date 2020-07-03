@@ -26,8 +26,6 @@ class _ProfileState extends State<Profile> {
       this.getProfile();
     }
 
-    print(this.profile);
-
     return this.profile != null
         ? SingleChildScrollView(
             scrollDirection: Axis.vertical,

@@ -7,6 +7,11 @@ class Data {
   static List<Contact> contacts = [];
   static List<dynamic> calls = [];
 
+  static dynamic currentUser = {
+    "userId": "676898787",
+    "name": "Pankaj",
+  };
+
   static Widget linearProgress = Container(
     height: 2,
     child: LinearProgressIndicator(

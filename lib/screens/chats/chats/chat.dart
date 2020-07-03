@@ -1,7 +1,7 @@
+import 'package:falcon/screens/chats/view/screen.dart';
+import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-String currentUser = "qwertyuiop";
 
 class Chat extends StatefulWidget {
   var data;
@@ -24,15 +24,22 @@ class _ChatState extends State<Chat> {
   parse() {
     var _chat = this.widget.data;
 
-    _chat["name"] = "AHello";
-    _chat["phoneNo"] = _chat["participants"][0]["phoneNo"];
+    for (var user in _chat["participants"]) {
+      if (user["userId"] == Data.currentUser["userId"]) {
+        _chat["thisUser"] = user;
+      } else {
+        _chat["otherUser"] = user;
+      }
+    }
+
+    _chat.remove("participants");
 
     this.chat = _chat;
   }
 
   String getName(int phone) {
     return isInContacts(phone)
-        ? this.chat["name"]
+        ? this.chat["otherUser"]["name"]
         : "${this.chat['name']} (${this.chat['phoneNo']})";
   }
 
@@ -40,8 +47,23 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     this.parse();
 
+    print(this.chat);
+
     return ListTile(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return Scaffold(
+                body: SafeArea(
+                  child: ChatViewScreen(this.chat),
+                ),
+              );
+            },
+          ),
+        );
+      },
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(13),
         child: Image(
@@ -52,7 +74,7 @@ class _ChatState extends State<Chat> {
         ),
       ),
       title: Text(
-        this.getName(this.chat["phoneNo"]),
+        this.getName(chat["otherUser"]["phoneNo"]),
         style: GoogleFonts.poppins(
           fontWeight: FontWeight.w600,
           fontSize: 18,
@@ -60,7 +82,7 @@ class _ChatState extends State<Chat> {
         overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
-        "jiofHJOGGFHJG;MHGFKMHJGFKLHJMGFKLNJGFKLNJGFKLNM ,GFJNGLKJGHLMNJ,GH.MNJGHKLNJGHKLNG",
+        this.chat["latestMessage"]["content"],
         style: GoogleFonts.poppins(
           fontWeight: FontWeight.w400,
           fontSize: 15,

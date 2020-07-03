@@ -1,4 +1,5 @@
 import 'package:falcon/screens/profile/profile.dart';
+import 'package:falcon/screens/profile/stories.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -8,6 +9,8 @@ class ProfileScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Profile(),
+          Divider(),
+          Stories(),
         ],
       ),
     );

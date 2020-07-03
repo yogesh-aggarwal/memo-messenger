@@ -1,4 +1,4 @@
-import 'package:falcon/screens/chats/chat.dart';
+import 'package:falcon/screens/chats/chats/chat.dart';
 import 'package:flutter/material.dart';
 
 class Chats extends StatefulWidget {
@@ -13,16 +13,20 @@ class _ChatsState extends State<Chats> {
         {
           "profilePic": "https://randomuser.me/api/portraits/women/79.jpg",
           "phoneNo": 676898787,
+          "name": "Pankaj",
+          "userId": "676898787",
         },
         {
           "profilePic": "https://randomuser.me/api/portraits/men/86.jpg",
           "phoneNo": 123456789,
+          "name": "Nayasa",
+          "userId": "976898789",
         },
       ],
-      "chatId": "fgohgfjhtgklhdgflkhjfgklhfjhd",
+      "chatId": "fgohgfjhtgklhdgflkhdddddqfjhd",
       "latestMessage": {
         "type": "text",
-        "content": "Hello",
+        "content": "Hi!!!",
         "sentDate": 123456789034,
       },
     },
@@ -30,17 +34,21 @@ class _ChatsState extends State<Chats> {
       "participants": [
         {
           "profilePic": "https://randomuser.me/api/portraits/men/86.jpg",
-          "phoneNo": 123456789,
+          "phoneNo": 676898787,
+          "name": "Pankaj",
+          "userId": "676898787",
         },
         {
           "profilePic": "https://randomuser.me/api/portraits/women/79.jpg",
-          "phoneNo": 676898787,
+          "phoneNo": 676898783,
+          "name": "Priyanshi",
+          "userId": "976898789",
         },
       ],
       "chatId": "fgohgfjhtgklhdgflkhjfgklhfjhd",
       "latestMessage": {
         "type": "text",
-        "content": "Hello",
+        "content": "Hello Pankaj!!!",
         "sentDate": 123456789034,
       },
     },
