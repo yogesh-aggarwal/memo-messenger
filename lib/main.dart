@@ -1,3 +1,4 @@
+import 'package:falcon/screens/calls/screen.dart';
 import 'package:falcon/screens/chats/screen.dart';
 import 'package:falcon/screens/labels/screen.dart';
 import 'package:falcon/screens/people/screen.dart';
@@ -40,7 +41,7 @@ class _FalconState extends State<Falcon> {
               PeopleScreen(),
               LabelsScreen(),
               ChatScreen(),
-              ChatScreen(),
+              CallsScreen(),
               ProfileScreen(),
             ],
             controller: Data.pageController,

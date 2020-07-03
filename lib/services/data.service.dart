@@ -5,4 +5,5 @@ class Data {
   static PageController pageController = new PageController(initialPage: 2);
 
   static List<Contact> contacts = [];
+  static List<dynamic> calls = [];
 }
