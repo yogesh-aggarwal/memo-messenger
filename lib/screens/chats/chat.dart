@@ -40,65 +40,44 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     this.parse();
 
-    return InkWell(
+    return ListTile(
       onTap: () {},
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * 0.05,
-          vertical: 10,
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(13),
+        child: Image(
+          image: NetworkImage(
+            "https://randomuser.me/api/portraits/women/79.jpg",
+          ),
+          width: 50,
         ),
-        child: Row(
-          children: <Widget>[
-            ClipRRect(
-              borderRadius: BorderRadius.circular(13),
-              child: Image(
-                image: NetworkImage(
-                  "https://randomuser.me/api/portraits/women/79.jpg",
-                ),
-                width: 50,
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.only(left: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      this.getName(this.chat["phoneNo"]),
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
-                    ),
-                    Text(
-                      "jiofHJOGGFHJG;MHGFKMHJGFKLHJMGFKLNJGFKLNJGFKLNM ,GFJNGLKJGHLMNJ,GH.MNJGHKLNJGHKLNG",
-                      style: GoogleFonts.poppins(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 15,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.green[500],
-                borderRadius: BorderRadius.circular(5),
-              ),
-              padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
-              child: Text(
-                "26",
-                style: GoogleFonts.poppins(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            )
-          ],
+      ),
+      title: Text(
+        this.getName(this.chat["phoneNo"]),
+        style: GoogleFonts.poppins(
+          fontWeight: FontWeight.w600,
+          fontSize: 18,
+        ),
+      ),
+      subtitle: Text(
+        "jiofHJOGGFHJG;MHGFKMHJGFKLHJMGFKLNJGFKLNJGFKLNM ,GFJNGLKJGHLMNJ,GH.MNJGHKLNJGHKLNG",
+        style: GoogleFonts.poppins(
+          fontWeight: FontWeight.w400,
+          fontSize: 15,
+        ),
+        overflow: TextOverflow.ellipsis,
+      ),
+      trailing: Container(
+        decoration: BoxDecoration(
+          color: Colors.green[500],
+          borderRadius: BorderRadius.circular(5),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+        child: Text(
+          "26",
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

@@ -8,7 +8,7 @@ class AddStory extends StatelessWidget {
     return Container(
         margin: EdgeInsets.only(right: 10),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 13),
+          padding: EdgeInsets.symmetric(horizontal: 13, vertical: 13),
           decoration: BoxDecoration(
             color: Colors.green[100],
             borderRadius: BorderRadius.circular(13),
