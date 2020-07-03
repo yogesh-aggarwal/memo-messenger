@@ -14,7 +14,7 @@ class Chats extends StatefulWidget {
         {
           "profileImg": "https://randomuser.me/api/portraits/men/86.jpg",
           "phoneNo": 123456789,
-          "name": "Nayasa",
+          "name": "Aryan",
           "userId": "976898789",
         },
       ],
@@ -36,7 +36,7 @@ class Chats extends StatefulWidget {
         {
           "profileImg": "https://randomuser.me/api/portraits/women/79.jpg",
           "phoneNo": 676898783,
-          "name": "Priyanshi",
+          "name": "Suman Bua Ji",
           "userId": "976898789",
         },
       ],

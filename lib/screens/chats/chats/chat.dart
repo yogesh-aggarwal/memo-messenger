@@ -67,9 +67,7 @@ class _ChatState extends State<Chat> {
       leading: ClipRRect(
         borderRadius: BorderRadius.circular(13),
         child: Image(
-          image: NetworkImage(
-            "https://randomuser.me/api/portraits/women/79.jpg",
-          ),
+          image: NetworkImage(this.chat["otherUser"]['profileImg']),
           width: 50,
         ),
       ),
