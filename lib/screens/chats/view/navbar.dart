@@ -1,11 +1,33 @@
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
+class IconAction extends StatelessWidget {
+  IconData icon;
+  Function onPressed;
+
+  IconAction({IconData icon, Function onPressed}) {
+    this.icon = icon;
+    this.onPressed = onPressed;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 10),
+      child: IconButton(
+        onPressed: this.onPressed,
+        icon: Icon(this.icon),
+      ),
+    );
+  }
+}
+
 class Navbar extends StatefulWidget {
   var chat;
 
   Navbar(var chat) {
     this.chat = chat;
+    print(this.chat);
   }
 
   @override
@@ -13,31 +35,54 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  String title = "Chats";
+  var chat;
 
   @override
   Widget build(BuildContext context) {
+    this.chat = widget.chat;
+    print("this.chat ${this.chat['otherUser']}");
+
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 10,
-        horizontal: MediaQuery.of(context).size.width * 0.05,
       ),
-      margin: EdgeInsets.only(bottom: 15),
+      // margin: EdgeInsets.only(bottom: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Container(
-            child: Text(
-              this.title,
-              style: GoogleFonts.poppins(
-                fontSize: 35,
-                fontWeight: FontWeight.w700,
+          Row(
+            children: <Widget>[
+              IconAction(
+                icon: Icons.arrow_back,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
-            ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image(
+                        image: NetworkImage(
+                          this.chat["otherUser"]["profileImg"],
+                        ),
+                        // width: ,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
           ),
-          Container(
-            child: Icon(Icons.search),
-          ),
+          Row(
+            children: <Widget>[
+              IconAction(
+                icon: Icons.more_vert,
+                onPressed: () {},
+              )
+            ],
+          )
         ],
       ),
     );

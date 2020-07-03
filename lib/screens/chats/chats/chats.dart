@@ -2,22 +2,17 @@ import 'package:falcon/screens/chats/chats/chat.dart';
 import 'package:flutter/material.dart';
 
 class Chats extends StatefulWidget {
-  @override
-  _ChatsState createState() => _ChatsState();
-}
-
-class _ChatsState extends State<Chats> {
   List<dynamic> chats = [
     {
       "participants": [
         {
-          "profilePic": "https://randomuser.me/api/portraits/women/79.jpg",
+          "profileImg": "https://randomuser.me/api/portraits/women/79.jpg",
           "phoneNo": 676898787,
           "name": "Pankaj",
           "userId": "676898787",
         },
         {
-          "profilePic": "https://randomuser.me/api/portraits/men/86.jpg",
+          "profileImg": "https://randomuser.me/api/portraits/men/86.jpg",
           "phoneNo": 123456789,
           "name": "Nayasa",
           "userId": "976898789",
@@ -33,13 +28,13 @@ class _ChatsState extends State<Chats> {
     {
       "participants": [
         {
-          "profilePic": "https://randomuser.me/api/portraits/men/86.jpg",
+          "profileImg": "https://randomuser.me/api/portraits/men/86.jpg",
           "phoneNo": 676898787,
           "name": "Pankaj",
           "userId": "676898787",
         },
         {
-          "profilePic": "https://randomuser.me/api/portraits/women/79.jpg",
+          "profileImg": "https://randomuser.me/api/portraits/women/79.jpg",
           "phoneNo": 676898783,
           "name": "Priyanshi",
           "userId": "976898789",
@@ -55,14 +50,19 @@ class _ChatsState extends State<Chats> {
   ];
 
   @override
+  _ChatsState createState() => _ChatsState();
+}
+
+class _ChatsState extends State<Chats> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       child: Expanded(
         child: ListView.builder(
           shrinkWrap: true,
-          itemCount: this.chats.length,
+          itemCount: widget.chats.length,
           itemBuilder: (context, index) {
-            return Chat(chats[index]);
+            return Chat(widget.chats[index]);
           },
         ),
       ),
