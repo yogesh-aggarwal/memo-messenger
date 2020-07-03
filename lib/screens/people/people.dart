@@ -45,6 +45,6 @@ class _PeopleState extends State<People> {
               ),
             ),
           )
-        : CircularProgressIndicator();
+        : Data.linearProgress;
   }
 }

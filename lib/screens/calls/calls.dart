@@ -40,6 +40,6 @@ class _CallsState extends State<Calls> {
               ),
             ),
           )
-        : CircularProgressIndicator();
+        : Data.linearProgress;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
+import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -67,11 +68,6 @@ class _ProfileState extends State<Profile> {
               ),
             ),
           )
-        : Container(
-            child: LinearProgressIndicator(
-              backgroundColor: Colors.green[200],
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.green[800]),
-            ),
-          );
+        : Container(child: Data.linearProgress);
   }
 }

@@ -6,4 +6,12 @@ class Data {
 
   static List<Contact> contacts = [];
   static List<dynamic> calls = [];
+
+  static Widget linearProgress = Container(
+    height: 2,
+    child: LinearProgressIndicator(
+      backgroundColor: Colors.green[200],
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.green[800]),
+    ),
+  );
 }
