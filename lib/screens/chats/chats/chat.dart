@@ -55,9 +55,9 @@ class _ChatState extends State<Chat> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return Scaffold(
-                body: SafeArea(
-                  child: ChatViewScreen(this.chat),
+              return SafeArea(
+                child: Scaffold(
+                  body: ChatViewScreen(this.chat),
                 ),
               );
             },

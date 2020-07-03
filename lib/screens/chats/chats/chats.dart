@@ -7,12 +7,14 @@ class Chats extends StatefulWidget {
       "participants": [
         {
           "profileImg": "https://randomuser.me/api/portraits/women/79.jpg",
+          "status": "Do coding & Be Awesome!",
           "phoneNo": 676898787,
           "name": "Pankaj",
           "userId": "676898787",
         },
         {
           "profileImg": "https://randomuser.me/api/portraits/men/86.jpg",
+          "status": "Do coding & Be Awesome!",
           "phoneNo": 123456789,
           "name": "Aryan",
           "userId": "976898789",
@@ -29,12 +31,14 @@ class Chats extends StatefulWidget {
       "participants": [
         {
           "profileImg": "https://randomuser.me/api/portraits/men/86.jpg",
+          "status": "Do coding & Be Awesome!",
           "phoneNo": 676898787,
           "name": "Pankaj",
           "userId": "676898787",
         },
         {
           "profileImg": "https://randomuser.me/api/portraits/women/79.jpg",
+          "status": "Do coding & Be Awesome!",
           "phoneNo": 676898783,
           "name": "Suman Bua Ji",
           "userId": "976898789",
