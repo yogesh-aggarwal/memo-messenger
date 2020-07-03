@@ -57,6 +57,7 @@ class _ChatState extends State<Chat> {
           fontWeight: FontWeight.w600,
           fontSize: 18,
         ),
+        overflow: TextOverflow.ellipsis,
       ),
       subtitle: Text(
         "jiofHJOGGFHJG;MHGFKMHJGFKLHJMGFKLNJGFKLNJGFKLNM ,GFJNGLKJGHLMNJ,GH.MNJGHKLNJGHKLNG",
