@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:falcon/services/data.service.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -29,16 +31,14 @@ class IconAction extends StatelessWidget {
 }
 
 class Navbar extends StatefulWidget {
-  var chat;
-
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Navbar> {
   var chat;
-  var subscription;
-  int count = 0;
+  // ignore: cancel_subscriptions
+  StreamSubscription subscription;
 
   @override
   dispose() {
@@ -49,15 +49,14 @@ class _NavbarState extends State<Navbar> {
   _NavbarState() {
     this.subscription = Data.currentChatIndex.listen((int index) {
       setState(() {
-        widget.chat = Data.chats[index];
-        count++;
+        this.chat = Data.chats[index];
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.chat != null
+    return this.chat != null
         ? Container(
             decoration: BoxDecoration(
               border: Border(
@@ -77,7 +76,7 @@ class _NavbarState extends State<Navbar> {
                         borderRadius: BorderRadius.circular(8),
                         child: Image(
                           image: NetworkImage(
-                            widget.chat["otherUser"]["profileImg"],
+                            this.chat["otherUser"]["profileImg"],
                           ),
                           width: 45,
                           height: 45,
@@ -89,7 +88,7 @@ class _NavbarState extends State<Navbar> {
                 ),
               ),
               title: Text(
-                widget.chat["otherUser"]["name"],
+                this.chat["otherUser"]["name"],
                 style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
@@ -98,7 +97,7 @@ class _NavbarState extends State<Navbar> {
                 overflow: TextOverflow.ellipsis,
               ),
               subtitle: Text(
-                widget.chat["otherUser"]["status"],
+                this.chat["otherUser"]["status"],
                 style: GoogleFonts.poppins(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,

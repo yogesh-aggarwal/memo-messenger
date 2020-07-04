@@ -60,7 +60,7 @@ class _ChatState extends State<Chat> {
             builder: (context) {
               return SafeArea(
                 child: Scaffold(
-                  body: ChatViewScreen(this.chat),
+                  body: ChatViewScreen(),
                 ),
               );
             },
