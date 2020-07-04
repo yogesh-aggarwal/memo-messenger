@@ -1,4 +1,4 @@
-import 'package:falcon/services/chatActions.service.dart';
+import 'package:falcon/services/data.service.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
@@ -31,77 +31,90 @@ class IconAction extends StatelessWidget {
 class Navbar extends StatefulWidget {
   var chat;
 
-  Navbar(var chat) {
-    this.chat = chat;
-  }
-
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Navbar> {
   var chat;
+  var subscription;
+  int count = 0;
+
+  @override
+  dispose() {
+    this.subscription.cancel();
+    super.dispose();
+  }
+
+  _NavbarState() {
+    this.subscription = Data.currentChatIndex.listen((int index) {
+      setState(() {
+        widget.chat = Data.chats[index];
+        count++;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    this.chat = widget.chat;
-
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: Color(0xFFE2E2E2),
-          ),
-        ),
-      ),
-      child: ListTile(
-        leading: Container(
-          child: SizedBox(
-            height: 40,
-            width: 60,
-            child: Row(
-              children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image(
-                    image: NetworkImage(
-                      this.chat["otherUser"]["profileImg"],
-                    ),
-                    width: 45,
-                    height: 45,
-                    fit: BoxFit.cover,
+    return widget.chat != null
+        ? Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Color(0xFFEEEEEE),
+                ),
+              ),
+            ),
+            child: ListTile(
+              leading: Container(
+                child: SizedBox(
+                  height: 40,
+                  width: 60,
+                  child: Row(
+                    children: <Widget>[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image(
+                          image: NetworkImage(
+                            widget.chat["otherUser"]["profileImg"],
+                          ),
+                          width: 45,
+                          height: 45,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
+              title: Text(
+                widget.chat["otherUser"]["name"],
+                style: GoogleFonts.poppins(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1A1A1A),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Text(
+                widget.chat["otherUser"]["status"],
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF1A1A1A),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+              trailing: IconAction(
+                icon: Icons.arrow_back,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Color(0xFF1A1A1A),
+              ),
             ),
-          ),
-        ),
-        title: Text(
-          this.chat["otherUser"]["name"],
-          style: GoogleFonts.poppins(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF1A1A1A),
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
-        subtitle: Text(
-          this.chat["otherUser"]["status"],
-          style: GoogleFonts.poppins(
-            fontSize: 15,
-            fontWeight: FontWeight.w500,
-            color: Color(0xFF1A1A1A),
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
-        trailing: IconAction(
-          icon: Icons.arrow_back,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          color: Color(0xFF1A1A1A),
-        ),
-      ),
-    );
+          )
+        : Data.linearProgress;
   }
 }

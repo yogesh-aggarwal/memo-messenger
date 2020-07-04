@@ -1,5 +1,6 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:rxdart/subjects.dart';
 
 class Data {
   static PageController pageController = new PageController(initialPage: 2);
@@ -11,6 +12,9 @@ class Data {
     "userId": "676898787",
     "name": "Pankaj",
   };
+
+  // ignore: close_sinks
+  static BehaviorSubject<int> currentChatIndex = new BehaviorSubject<int>();
 
   static List<dynamic> chats = [
     {

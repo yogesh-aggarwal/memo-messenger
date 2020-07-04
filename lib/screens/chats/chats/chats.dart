@@ -18,7 +18,7 @@ class _ChatsState extends State<Chats> {
           shrinkWrap: true,
           itemCount: widget.chats.length,
           itemBuilder: (context, index) {
-            return Chat(widget.chats[index]);
+            return Chat(index);
           },
         ),
       ),

@@ -26,7 +26,7 @@ class _ChatViewScreenState extends State<ChatViewScreen> {
     return Container(
       child: Column(
         children: <Widget>[
-          Navbar(widget.chat),
+          Navbar(),
           ChatList(),
           widget.chat["messages"].length != 0
               ? ChatView(widget.chat)

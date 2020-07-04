@@ -2,16 +2,24 @@ import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
 
 class ChatList extends StatefulWidget {
-  List<dynamic> chats = Data.chats;
+  final List<dynamic> chats = Data.chats;
 
   @override
   _ChatListState createState() => _ChatListState();
 }
 
 class _ChatListState extends State<ChatList> {
+  double getScrollPosition({@required int index}) {
+    return MediaQuery.of(context).size.width * .2 * (index - 2);
+  }
+
   @override
   Widget build(BuildContext context) {
-    ScrollController scrollController = new ScrollController();
+    ScrollController scrollController = new ScrollController(
+      initialScrollOffset: getScrollPosition(
+        index: Data.currentChatIndex.value,
+      ),
+    );
 
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
@@ -30,8 +38,9 @@ class _ChatListState extends State<ChatList> {
             for (int i = 0; i < widget.chats.length; i++)
               GestureDetector(
                 onTap: () {
+                  Data.currentChatIndex.add(i);
                   scrollController.animateTo(
-                    MediaQuery.of(context).size.width * .2 * (i - 2),
+                    getScrollPosition(index: i),
                     duration: Duration(milliseconds: 200),
                     curve: Curves.easeInOut,
                   );

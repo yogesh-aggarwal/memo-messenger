@@ -5,9 +5,12 @@ import 'package:google_fonts/google_fonts.dart';
 
 class Chat extends StatefulWidget {
   var data;
+  int chatIndex;
 
-  Chat(data) {
-    this.data = data;
+  Chat(index) {
+    print("Reconstructed chat");
+    this.data = Data.chats[index];
+    this.chatIndex = index;
   }
 
   @override
@@ -51,6 +54,7 @@ class _ChatState extends State<Chat> {
 
     return ListTile(
       onTap: () {
+        Data.currentChatIndex.add(widget.chatIndex);
         Navigator.push(
           context,
           MaterialPageRoute(
