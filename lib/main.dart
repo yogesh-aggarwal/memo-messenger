@@ -26,6 +26,16 @@ class _FalconState extends State<Falcon> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        accentColor: Colors.green,
+        accentColorBrightness: Brightness.light,
+        buttonTheme: ButtonThemeData(
+          highlightColor: Colors.red,
+          hoverColor: Colors.red,
+          buttonColor: Colors.red,
+          splashColor: Colors.red,
+        ),
+      ),
       builder: (context, child) {
         return ScrollConfiguration(
           behavior: ScrollBehavior()

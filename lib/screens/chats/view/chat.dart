@@ -15,7 +15,10 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('widget.chatId'),
+      child: IconButton(
+        icon: Icon(Icons.open_in_browser),
+        onPressed: () {},
+      ),
     );
   }
 }

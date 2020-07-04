@@ -1,3 +1,4 @@
+import 'package:falcon/services/chatActions.service.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
@@ -127,7 +128,9 @@ class _NavbarState extends State<Navbar> {
             children: <Widget>[
               IconAction(
                 icon: Icons.more_vert,
-                onPressed: () {},
+                onPressed: () {
+                  showChatOptions(context);
+                },
                 color: Colors.white,
               )
             ],
