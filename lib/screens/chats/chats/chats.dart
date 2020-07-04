@@ -12,6 +12,7 @@ class Chats extends StatefulWidget {
 class _ChatsState extends State<Chats> {
   @override
   Widget build(BuildContext context) {
+    print("rebuild");
     return Container(
       child: Expanded(
         child: ListView.builder(

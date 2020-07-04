@@ -18,13 +18,33 @@ class Falcon extends StatefulWidget {
 
 class _FalconState extends State<Falcon> {
   int navCurrentIndex = 2;
+  bool _visible = true;
   var bottomNavTextStyle = GoogleFonts.poppins(
     color: Colors.green[800],
     fontWeight: FontWeight.w600,
   );
 
+  animate() {
+    setState(() {
+      _visible = false;
+    });
+    Future.delayed(Duration(milliseconds: 150)).then((_) {
+      setState(() {
+        _visible = true;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      PeopleScreen(),
+      LabelsScreen(),
+      ChatScreen(),
+      CallsScreen(),
+      ProfileScreen(),
+    ];
+
     return MaterialApp(
       theme: ThemeData(
         accentColor: Colors.green,
@@ -46,20 +66,13 @@ class _FalconState extends State<Falcon> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: PageView(
-            children: <Widget>[
-              PeopleScreen(),
-              LabelsScreen(),
-              ChatScreen(),
-              CallsScreen(),
-              ProfileScreen(),
-            ],
-            controller: Data.pageController,
-            onPageChanged: (index) {
-              setState(() {
-                this.navCurrentIndex = index;
-              });
-            },
+          body: AnimatedOpacity(
+            duration: Duration(milliseconds: 500),
+            opacity: _visible ? 1 : 0,
+            child: Container(
+              child: pages[this.navCurrentIndex],
+            ),
+            curve: Curves.easeInOut,
           ),
           bottomNavigationBar: BottomNavigationBar(
             items: [
@@ -90,17 +103,14 @@ class _FalconState extends State<Falcon> {
               ),
             ],
             currentIndex: this.navCurrentIndex,
-            elevation: 0,
+            elevation: 20,
             // type: BottomNavigationBarType.fixed,
             onTap: (index) {
-              setState(() {
-                this.navCurrentIndex = index;
-
-                Data.pageController.animateToPage(
-                  index,
-                  duration: Duration(milliseconds: 200),
-                  curve: Curves.easeInOut,
-                );
+              this.animate();
+              Future.delayed(Duration(milliseconds: 200)).then((_) {
+                setState(() {
+                  this.navCurrentIndex = index;
+                });
               });
             },
           ),
