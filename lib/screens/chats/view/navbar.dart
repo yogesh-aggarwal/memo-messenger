@@ -69,7 +69,7 @@ class _NavbarState extends State<Navbar> {
             child: ListTile(
               leading: Container(
                 child: SizedBox(
-                  height: 40,
+                  height: 60,
                   width: 60,
                   child: Row(
                     children: <Widget>[

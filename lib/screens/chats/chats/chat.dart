@@ -8,7 +8,6 @@ class Chat extends StatefulWidget {
   int chatIndex;
 
   Chat(index) {
-    print("Reconstructed chat");
     this.data = Data.chats[index];
     this.chatIndex = index;
   }
