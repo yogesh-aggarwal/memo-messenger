@@ -57,6 +57,7 @@ class _ChatListState extends State<ChatList> {
                       ),
                       width: MediaQuery.of(context).size.width * .16,
                       height: MediaQuery.of(context).size.width * .16,
+                      
                       fit: BoxFit.cover,
                     ),
                   ),

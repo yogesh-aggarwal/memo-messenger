@@ -3,7 +3,6 @@ import 'package:falcon/screens/chats/chats/screen.dart';
 import 'package:falcon/screens/labels/screen.dart';
 import 'package:falcon/screens/people/screen.dart';
 import 'package:falcon/screens/profile/screen.dart';
-import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,7 +27,7 @@ class _FalconState extends State<Falcon> {
     setState(() {
       _visible = false;
     });
-    Future.delayed(Duration(milliseconds: 150)).then((_) {
+    Future.delayed(Duration(milliseconds: 250)).then((_) {
       setState(() {
         _visible = true;
       });
@@ -107,7 +106,7 @@ class _FalconState extends State<Falcon> {
             // type: BottomNavigationBarType.fixed,
             onTap: (index) {
               this.animate();
-              Future.delayed(Duration(milliseconds: 200)).then((_) {
+              Future.delayed(Duration(milliseconds: 250)).then((_) {
                 setState(() {
                   this.navCurrentIndex = index;
                 });
