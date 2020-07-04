@@ -11,7 +11,6 @@ class ChatViewScreen extends StatefulWidget {
   }
 
   getChat(dynamic chat) {
-    print(chat);
     chat["messages"] = ["f"];
     return chat;
   }

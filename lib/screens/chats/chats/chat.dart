@@ -47,8 +47,6 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     this.parse();
 
-    print(this.chat);
-
     return ListTile(
       onTap: () {
         Navigator.push(

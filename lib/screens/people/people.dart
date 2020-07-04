@@ -13,17 +13,13 @@ class _PeopleState extends State<People> {
   List<Contact> contacts = Data.contacts;
 
   getContacts() async {
-    print("I am called!");
     await Permission.contacts.request();
     if (await Permission.contacts.status.isGranted) {
-      print("Permission granted");
       Data.contacts = (await ContactsService.getContacts()).toList();
       this.setState(() {
-        print("Got Contacts");
         this.contacts = Data.contacts;
       });
     } else {
-      print("Permission denied");
     }
   }
 

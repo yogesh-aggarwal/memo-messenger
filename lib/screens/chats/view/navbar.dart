@@ -32,7 +32,6 @@ class Navbar extends StatefulWidget {
 
   Navbar(var chat) {
     this.chat = chat;
-    print(this.chat);
   }
 
   @override
@@ -45,7 +44,6 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     this.chat = widget.chat;
-    print("this.chat ${this.chat['otherUser']}");
 
     return Container(
       padding: EdgeInsets.symmetric(
