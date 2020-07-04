@@ -46,96 +46,50 @@ class _NavbarState extends State<Navbar> {
   Widget build(BuildContext context) {
     this.chat = widget.chat;
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        vertical: 10,
-      ),
-      margin: EdgeInsets.only(bottom: 20),
-      decoration: BoxDecoration(
-        color: Colors.green[500],
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        ),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 10,
-            color: Color(0xFFCCCCCC),
-          ),
-          BoxShadow(
-            blurRadius: 0,
-            color: Color(0xFFCCCCCC),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Row(
+    return ListTile(
+      leading: Container(
+        child: SizedBox(
+          height: 40,
+          width: 60,
+          child: Row(
             children: <Widget>[
-              IconAction(
-                icon: Icons.arrow_back,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                color: Colors.white,
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 5),
-                child: Row(
-                  children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image(
-                        image: NetworkImage(
-                          this.chat["otherUser"]["profileImg"],
-                        ),
-                        width: 45,
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 13),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            this.chat["otherUser"]["name"],
-                            style: GoogleFonts.poppins(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            this.chat["otherUser"]["status"],
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image(
+                  image: NetworkImage(
+                    this.chat["otherUser"]["profileImg"],
+                  ),
+                  width: 45,
                 ),
-              )
+              ),
             ],
           ),
-          Row(
-            children: <Widget>[
-              IconAction(
-                icon: Icons.more_vert,
-                onPressed: () {
-                  showChatOptions(context);
-                },
-                color: Colors.white,
-              )
-            ],
-          )
-        ],
+        ),
+      ),
+      title: Text(
+        this.chat["otherUser"]["name"],
+        style: GoogleFonts.poppins(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: Color(0xFF1A1A1A),
+        ),
+        overflow: TextOverflow.ellipsis,
+      ),
+      subtitle: Text(
+        this.chat["otherUser"]["status"],
+        style: GoogleFonts.poppins(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: Color(0xFF1A1A1A),
+        ),
+        overflow: TextOverflow.ellipsis,
+      ),
+      trailing: IconAction(
+        icon: Icons.arrow_back,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        color: Color(0xFF1A1A1A),
       ),
     );
   }
