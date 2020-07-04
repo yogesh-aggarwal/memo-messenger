@@ -50,7 +50,7 @@ class _NavbarState extends State<Navbar> {
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(
-            color: Color(0xFFCCCCCC),
+            color: Color(0xFFE2E2E2),
           ),
         ),
       ),

@@ -14,7 +14,14 @@ class _ChatListState extends State<ChatList> {
     ScrollController scrollController = new ScrollController();
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.symmetric(vertical: 10),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xFFCCCCCC),
+          ),
+        ),
+      ),
       child: SingleChildScrollView(
         controller: scrollController,
         scrollDirection: Axis.horizontal,
