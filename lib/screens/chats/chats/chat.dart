@@ -24,11 +24,13 @@ class _ChatState extends State<Chat> {
   parse() {
     var _chat = this.widget.data;
 
-    for (var user in _chat["participants"]) {
-      if (user["userId"] == Data.currentUser["userId"]) {
-        _chat["thisUser"] = user;
-      } else {
-        _chat["otherUser"] = user;
+    if (_chat["participants"] != null) {
+      for (var user in _chat["participants"]) {
+        if (user["userId"] == Data.currentUser["userId"]) {
+          _chat["thisUser"] = user;
+        } else {
+          _chat["otherUser"] = user;
+        }
       }
     }
 
@@ -67,6 +69,8 @@ class _ChatState extends State<Chat> {
         child: Image(
           image: NetworkImage(this.chat["otherUser"]['profileImg']),
           width: 50,
+          height: 50,
+          fit: BoxFit.cover,
         ),
       ),
       title: Text(

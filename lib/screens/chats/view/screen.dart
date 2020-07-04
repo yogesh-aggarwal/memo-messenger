@@ -1,3 +1,4 @@
+import 'package:falcon/screens/chats/view/chatList.dart';
 import 'package:falcon/screens/chats/view/navbar.dart';
 import 'package:falcon/screens/chats/view/chat.dart';
 import 'package:falcon/services/data.service.dart';
@@ -26,6 +27,7 @@ class _ChatViewScreenState extends State<ChatViewScreen> {
       child: Column(
         children: <Widget>[
           Navbar(widget.chat),
+          ChatList(),
           widget.chat["messages"].length != 0
               ? ChatView(widget.chat)
               : Data.linearProgress,

@@ -46,50 +46,61 @@ class _NavbarState extends State<Navbar> {
   Widget build(BuildContext context) {
     this.chat = widget.chat;
 
-    return ListTile(
-      leading: Container(
-        child: SizedBox(
-          height: 40,
-          width: 60,
-          child: Row(
-            children: <Widget>[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image(
-                  image: NetworkImage(
-                    this.chat["otherUser"]["profileImg"],
-                  ),
-                  width: 45,
-                ),
-              ),
-            ],
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Color(0xFFCCCCCC),
           ),
         ),
       ),
-      title: Text(
-        this.chat["otherUser"]["name"],
-        style: GoogleFonts.poppins(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
+      child: ListTile(
+        leading: Container(
+          child: SizedBox(
+            height: 40,
+            width: 60,
+            child: Row(
+              children: <Widget>[
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image(
+                    image: NetworkImage(
+                      this.chat["otherUser"]["profileImg"],
+                    ),
+                    width: 45,
+                    height: 45,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        title: Text(
+          this.chat["otherUser"]["name"],
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w700,
+            color: Color(0xFF1A1A1A),
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
+        subtitle: Text(
+          this.chat["otherUser"]["status"],
+          style: GoogleFonts.poppins(
+            fontSize: 15,
+            fontWeight: FontWeight.w500,
+            color: Color(0xFF1A1A1A),
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
+        trailing: IconAction(
+          icon: Icons.arrow_back,
+          onPressed: () {
+            Navigator.pop(context);
+          },
           color: Color(0xFF1A1A1A),
         ),
-        overflow: TextOverflow.ellipsis,
-      ),
-      subtitle: Text(
-        this.chat["otherUser"]["status"],
-        style: GoogleFonts.poppins(
-          fontSize: 15,
-          fontWeight: FontWeight.w500,
-          color: Color(0xFF1A1A1A),
-        ),
-        overflow: TextOverflow.ellipsis,
-      ),
-      trailing: IconAction(
-        icon: Icons.arrow_back,
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        color: Color(0xFF1A1A1A),
       ),
     );
   }

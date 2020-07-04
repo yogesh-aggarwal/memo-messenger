@@ -1,0 +1,54 @@
+import 'package:falcon/services/data.service.dart';
+import 'package:flutter/material.dart';
+
+class ChatList extends StatefulWidget {
+  List<dynamic> chats = Data.chats;
+
+  @override
+  _ChatListState createState() => _ChatListState();
+}
+
+class _ChatListState extends State<ChatList> {
+  @override
+  Widget build(BuildContext context) {
+    ScrollController scrollController = new ScrollController();
+
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: SingleChildScrollView(
+        controller: scrollController,
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: <Widget>[
+            for (int i = 0; i < widget.chats.length; i++)
+              GestureDetector(
+                onTap: () {
+                  scrollController.animateTo(
+                    MediaQuery.of(context).size.width * .2 * (i - 2),
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.easeInOut,
+                  );
+                },
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * .02,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(13),
+                    child: Image(
+                      image: NetworkImage(
+                        widget.chats[i]["otherUser"]['profileImg'],
+                      ),
+                      width: MediaQuery.of(context).size.width * .16,
+                      height: MediaQuery.of(context).size.width * .16,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              )
+          ],
+        ),
+      ),
+    );
+  }
+}
