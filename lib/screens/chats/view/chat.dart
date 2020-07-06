@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class ChatView extends StatefulWidget {
   @override
@@ -32,9 +33,8 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: IconButton(
-        icon: Icon(Icons.open_in_browser),
-        onPressed: () {},
+      child: Text(
+        "I'm chatting with ${this.chat['otherUser']['name']} (${this.chat['otherUser']['phoneNo']})",
       ),
     );
   }

@@ -77,8 +77,8 @@ class _ChatListState extends State<ChatList> {
                         image: NetworkImage(
                           this.chats[i]["otherUser"]['profileImg'],
                         ),
-                        width: 45,
-                        height: 45,
+                        width: MediaQuery.of(context).size.width * .16,
+                        height: MediaQuery.of(context).size.width * .16,
                         fit: BoxFit.cover,
                       ),
                     ),

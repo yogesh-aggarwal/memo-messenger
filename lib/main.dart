@@ -130,12 +130,14 @@ class _MemoMessengerState extends State<MemoMessenger> {
             currentIndex: this.navCurrentIndex,
             elevation: 20,
             onTap: (index) {
-              animate();
-              Future.delayed(
-                Duration(milliseconds: this.pageAnimationDuration),
-              ).then((_) {
-                this.changePage(index);
-              });
+              if (this.navCurrentIndex != index) {
+                animate();
+                Future.delayed(
+                  Duration(milliseconds: this.pageAnimationDuration),
+                ).then((_) {
+                  this.changePage(index);
+                });
+              }
             },
           ),
         ),
