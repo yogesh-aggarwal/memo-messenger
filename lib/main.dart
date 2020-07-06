@@ -29,10 +29,6 @@ class _FalconState extends State<Falcon> {
     Data.getCalls();
   }
 
-  Future buildPage() async {
-    return Future.value(pages[this.navCurrentIndex]);
-  }
-
   @override
   void initState() {
     this.prepareData();
@@ -66,6 +62,7 @@ class _FalconState extends State<Falcon> {
       home: SafeArea(
         child: Scaffold(
           body: PageView(
+            physics: AlwaysScrollableScrollPhysics(),
             onPageChanged: (index) {
               setState(() {
                 this.navCurrentIndex = index;
@@ -74,7 +71,13 @@ class _FalconState extends State<Falcon> {
             children: [
               PeopleScreen(),
               LabelsScreen(),
-              ChatScreen(),
+              FutureBuilder(
+                future: Future.delayed(Duration(seconds: 4)),
+                builder: (context, snapshot) {
+                  print("buiold");
+                  return ChatScreen();
+                },
+              ),
               CallsScreen(),
               ProfileScreen(),
             ],
@@ -115,10 +118,10 @@ class _FalconState extends State<Falcon> {
               setState(() {
                 this.navCurrentIndex = index;
               });
-              pageController.animateToPage(
+              pageController.jumpToPage(
                 index,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
+                // duration: Duration(milliseconds: 300),
+                // curve: Curves.easeInOut,
               );
             },
           ),

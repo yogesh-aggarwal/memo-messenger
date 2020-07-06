@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:falcon/screens/people/person.dart';
 import 'package:falcon/services/data.service.dart';
 import 'package:contacts_service/contacts_service.dart';

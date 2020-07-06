@@ -10,7 +10,7 @@ class Calls extends StatefulWidget {
 }
 
 class _CallsState extends State<Calls> {
-  List<dynamic> calls = [];
+  List<dynamic> calls;
   // ignore: cancel_subscriptions
   StreamSubscription callsSub;
   bool isPermited = true;
