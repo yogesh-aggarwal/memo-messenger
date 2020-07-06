@@ -23,6 +23,9 @@ class _FalconState extends State<Falcon> {
     fontWeight: FontWeight.w600,
   );
   List<Widget> pages = [];
+  int pageAnimationDuration = 200;
+  bool _visible = true;
+  PageController pageController = new PageController(initialPage: 2);
 
   void prepareData() async {
     Data.getContacts();
@@ -35,11 +38,24 @@ class _FalconState extends State<Falcon> {
     super.initState();
   }
 
+  void animate() async {
+    setState(() {
+      _visible = false;
+    });
+    Future.delayed(Duration(milliseconds: this.pageAnimationDuration))
+        .then((_) {
+      setState(() {
+        _visible = true;
+      });
+    });
+  }
+
+  void changePage(int index) {
+    this.pageController.jumpToPage(index);
+  }
+
   @override
   Widget build(BuildContext context) {
-    PageController pageController = new PageController(
-      initialPage: this.navCurrentIndex,
-    );
     return MaterialApp(
       theme: ThemeData(
         accentColor: Colors.green,
@@ -61,27 +77,25 @@ class _FalconState extends State<Falcon> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: PageView(
-            physics: AlwaysScrollableScrollPhysics(),
-            onPageChanged: (index) {
-              setState(() {
-                this.navCurrentIndex = index;
-              });
-            },
-            children: [
-              PeopleScreen(),
-              LabelsScreen(),
-              FutureBuilder(
-                future: Future.delayed(Duration(seconds: 4)),
-                builder: (context, snapshot) {
-                  print("buiold");
-                  return ChatScreen();
-                },
-              ),
-              CallsScreen(),
-              ProfileScreen(),
-            ],
-            controller: pageController,
+          body: AnimatedOpacity(
+            opacity: this._visible ? 1.0 : 0.0,
+            duration: Duration(milliseconds: this.pageAnimationDuration),
+            curve: Curves.easeInOutCirc,
+            child: PageView(
+              controller: pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  this.navCurrentIndex = index;
+                });
+              },
+              children: [
+                PeopleScreen(),
+                LabelsScreen(),
+                ChatScreen(),
+                CallsScreen(),
+                ProfileScreen(),
+              ],
+            ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             items: [
@@ -113,16 +127,14 @@ class _FalconState extends State<Falcon> {
             ],
             currentIndex: this.navCurrentIndex,
             elevation: 20,
-            // type: BottomNavigationBarType.fixed,
             onTap: (index) {
-              setState(() {
-                this.navCurrentIndex = index;
+              animate();
+              Future.delayed(
+                Duration(milliseconds: this.pageAnimationDuration),
+              ).then((_) {
+                print("gjfyjufyufkuf");
+                this.changePage(index);
               });
-              pageController.jumpToPage(
-                index,
-                // duration: Duration(milliseconds: 300),
-                // curve: Curves.easeInOut,
-              );
             },
           ),
         ),

@@ -24,7 +24,7 @@ class _NavbarState extends State<Navbar> {
             child: Text(
               this.title,
               style: GoogleFonts.poppins(
-                fontSize: 35,
+                fontSize: 40,
                 fontWeight: FontWeight.w700,
               ),
             ),
