@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class ChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print("chats rerender");
     return Container(
       child: Column(
         children: <Widget>[

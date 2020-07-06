@@ -41,17 +41,19 @@ class _NavbarState extends State<Navbar> {
   StreamSubscription subscription;
 
   @override
+  initState() {
+    this.subscription = Data.currentChat.listen((chat) {
+      setState(() {
+        this.chat = chat;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   dispose() {
     this.subscription.cancel();
     super.dispose();
-  }
-
-  _NavbarState() {
-    this.subscription = Data.currentChatIndex.listen((int index) {
-      setState(() {
-        this.chat = Data.chats[index];
-      });
-    });
   }
 
   @override

@@ -5,11 +5,6 @@ import 'package:falcon/screens/chats/view/chat.dart';
 import 'package:flutter/material.dart';
 
 class ChatViewScreen extends StatefulWidget {
-  getChat(dynamic chat) {
-    chat["messages"] = ["f"];
-    return chat;
-  }
-
   @override
   _ChatViewScreenState createState() => _ChatViewScreenState();
 }

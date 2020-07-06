@@ -28,6 +28,7 @@ class _FalconState extends State<Falcon> {
   PageController pageController = new PageController(initialPage: 2);
 
   void prepareData() async {
+    Data.getChats();
     Data.getContacts();
     Data.getCalls();
   }
@@ -132,7 +133,6 @@ class _FalconState extends State<Falcon> {
               Future.delayed(
                 Duration(milliseconds: this.pageAnimationDuration),
               ).then((_) {
-                print("gjfyjufyufkuf");
                 this.changePage(index);
               });
             },

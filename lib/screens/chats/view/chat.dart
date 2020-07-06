@@ -9,22 +9,23 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
-  var chat;
-
+  dynamic chat;
   // ignore: cancel_subscriptions
-  StreamSubscription subscription;
+  StreamSubscription chatSub;
 
-  _ChatViewState() {
-    this.subscription = Data.currentChatIndex.listen((int index) {
+  @override
+  initState() {
+    this.chatSub = Data.currentChat.listen((chat) {
       setState(() {
-        this.chat = Data.chats[index];
+        this.chat = chat;
       });
     });
+    super.initState();
   }
 
   @override
   dispose() {
-    this.subscription.cancel();
+    this.chatSub.cancel();
     super.dispose();
   }
 
