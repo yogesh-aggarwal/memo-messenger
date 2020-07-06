@@ -213,9 +213,9 @@ class Data {
   }
 
   static getCalls() async {
-    await Permission.phone.request();
-    if (await Permission.phone.isGranted) {
-      Data.contacts.add(
+    await Permission.contacts.request();
+    if (await Permission.contacts.isGranted) {
+      Data.calls.add(
         [
           Contact(
             displayName: "Yogesh",
@@ -224,7 +224,7 @@ class Data {
         ],
       );
     } else {
-      Data.contacts.add(null);
+      Data.calls.add(null);
     }
   }
 }
