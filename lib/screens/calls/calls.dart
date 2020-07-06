@@ -1,7 +1,8 @@
-import 'package:contacts_service/contacts_service.dart';
+import 'dart:async';
 import 'package:falcon/screens/calls/call.dart';
 import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Calls extends StatefulWidget {
   @override
@@ -9,37 +10,48 @@ class Calls extends StatefulWidget {
 }
 
 class _CallsState extends State<Calls> {
-  List<dynamic> calls = Data.calls;
+  List<dynamic> calls = [];
+  // ignore: cancel_subscriptions
+  StreamSubscription callsSub;
+  bool isPermited = true;
 
-  getCalls() async {
-    this.calls = [
-      Contact(
-        displayName: "Yogesh",
-        phones: [
-          Item(value: "1234567890"),
-        ],
-      ),
-    ];
+  void checkPermission() async {
+    bool permission = await Permission.phone.isGranted;
+    this.setState(() {
+      this.isPermited = permission;
+    });
+  }
+
+  @override
+  initState() {
+    Data.calls.listen((calls) {
+      setState(() {
+        this.calls = calls;
+      });
+    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (Data.calls.length == 0) {
-      this.getCalls();
+    if (this.calls == null) {
+      if (isPermited) {
+        return Data.linearProgress;
+      } else {
+        return Text("Permission issue");
+      }
+    } else {
+      return Container(
+        child: Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: this.calls.length,
+            itemBuilder: (context, index) {
+              return Call(this.calls[index]);
+            },
+          ),
+        ),
+      );
     }
-
-    return this.calls.length != 0
-        ? Container(
-            child: Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: this.calls.length,
-                itemBuilder: (context, index) {
-                  return Call(this.calls[index]);
-                },
-              ),
-            ),
-          )
-        : Data.linearProgress;
   }
 }

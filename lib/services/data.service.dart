@@ -1,18 +1,20 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rxdart/subjects.dart';
 
 class Data {
   static PageController pageController = new PageController(initialPage: 2);
-
-  static List<Contact> contacts = [];
-  static List<dynamic> calls = [];
 
   static dynamic currentUser = {
     "userId": "676898787",
     "name": "Pankaj",
   };
 
+  // ignore: close_sinks
+  static BehaviorSubject<List<Contact>> contacts = new BehaviorSubject();
+  // ignore: close_sinks
+  static BehaviorSubject<List<dynamic>> calls = new BehaviorSubject();
   // ignore: close_sinks
   static BehaviorSubject<int> currentChatIndex = new BehaviorSubject<int>();
 
@@ -194,4 +196,29 @@ class Data {
       valueColor: AlwaysStoppedAnimation<Color>(Colors.green[800]),
     ),
   );
+
+  static getContacts() async {
+    await Permission.contacts.request();
+    if (await Permission.contacts.isGranted) {
+      Data.contacts.add((await ContactsService.getContacts()).toList());
+    } else {
+      Data.contacts.add(null);
+    }
+  }
+
+  static getCalls() async {
+    await Permission.phone.request();
+    if (await Permission.phone.isGranted) {
+      Data.contacts.add(
+        [
+          Contact(
+            displayName: "Yogesh",
+            phones: [Item(value: "9425895434")],
+          ),
+        ],
+      );
+    } else {
+      Data.contacts.add(null);
+    }
+  }
 }

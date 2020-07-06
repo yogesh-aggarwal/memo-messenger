@@ -3,6 +3,7 @@ import 'package:falcon/screens/chats/chats/screen.dart';
 import 'package:falcon/screens/labels/screen.dart';
 import 'package:falcon/screens/people/screen.dart';
 import 'package:falcon/screens/profile/screen.dart';
+import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,33 +18,32 @@ class Falcon extends StatefulWidget {
 
 class _FalconState extends State<Falcon> {
   int navCurrentIndex = 2;
-  bool _visible = true;
   var bottomNavTextStyle = GoogleFonts.poppins(
     color: Colors.green[800],
     fontWeight: FontWeight.w600,
   );
+  List<Widget> pages = [];
 
-  animate() {
-    setState(() {
-      _visible = false;
-    });
-    Future.delayed(Duration(milliseconds: 250)).then((_) {
-      setState(() {
-        _visible = true;
-      });
-    });
+  void prepareData() async {
+    Data.getContacts();
+    Data.getCalls();
+  }
+
+  Future buildPage() async {
+    return Future.value(pages[this.navCurrentIndex]);
+  }
+
+  @override
+  void initState() {
+    this.prepareData();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> pages = [
-      PeopleScreen(),
-      LabelsScreen(),
-      ChatScreen(),
-      CallsScreen(),
-      ProfileScreen(),
-    ];
-
+    PageController pageController = new PageController(
+      initialPage: this.navCurrentIndex,
+    );
     return MaterialApp(
       theme: ThemeData(
         accentColor: Colors.green,
@@ -65,13 +65,20 @@ class _FalconState extends State<Falcon> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          body: AnimatedOpacity(
-            duration: Duration(milliseconds: 500),
-            opacity: _visible ? 1 : 0,
-            child: Container(
-              child: pages[this.navCurrentIndex],
-            ),
-            curve: Curves.easeInOut,
+          body: PageView(
+            onPageChanged: (index) {
+              setState(() {
+                this.navCurrentIndex = index;
+              });
+            },
+            children: [
+              PeopleScreen(),
+              LabelsScreen(),
+              ChatScreen(),
+              CallsScreen(),
+              ProfileScreen(),
+            ],
+            controller: pageController,
           ),
           bottomNavigationBar: BottomNavigationBar(
             items: [
@@ -105,12 +112,14 @@ class _FalconState extends State<Falcon> {
             elevation: 20,
             // type: BottomNavigationBarType.fixed,
             onTap: (index) {
-              this.animate();
-              Future.delayed(Duration(milliseconds: 250)).then((_) {
-                setState(() {
-                  this.navCurrentIndex = index;
-                });
+              setState(() {
+                this.navCurrentIndex = index;
               });
+              pageController.animateToPage(
+                index,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
             },
           ),
         ),
