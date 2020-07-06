@@ -38,10 +38,7 @@ class _ChatState extends State<Chat> {
           widget.chat["otherUser"] = user;
         }
       }
-    } else {
-      Navigator.of(context).pop();
     }
-    widget.chat.remove("participants");
   }
 
   @override
@@ -106,7 +103,9 @@ class _ChatState extends State<Chat> {
         ),
       );
     } else {
-      return Container();
+      return Container(
+        child: Text("gjrleisgjrsgls"),
+      );
     }
   }
 }

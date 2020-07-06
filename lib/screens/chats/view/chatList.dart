@@ -43,6 +43,7 @@ class _ChatListState extends State<ChatList> {
     if (this.chats != null) {
       return Container(
         padding: EdgeInsets.symmetric(vertical: 10),
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
@@ -76,8 +77,8 @@ class _ChatListState extends State<ChatList> {
                         image: NetworkImage(
                           this.chats[i]["otherUser"]['profileImg'],
                         ),
-                        width: MediaQuery.of(context).size.width * .16,
-                        height: MediaQuery.of(context).size.width * .16,
+                        width: 45,
+                        height: 45,
                         fit: BoxFit.cover,
                       ),
                     ),
