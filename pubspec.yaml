@@ -33,6 +33,7 @@ dependencies:
   contacts_service:
   permission_handler:
   assorted_layout_widgets:
+  outline_material_icons:
 
 dev_dependencies:
   flutter_test:

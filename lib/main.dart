@@ -6,6 +6,7 @@ import 'package:falcon/screens/profile/screen.dart';
 import 'package:falcon/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 void main() {
   runApp(Falcon());
@@ -116,9 +117,9 @@ class _FalconState extends State<Falcon> {
                 activeIcon: Icon(Icons.chat_bubble, color: Colors.green[800]),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.outlined_flag, color: Colors.green[800]),
+                icon: Icon(OMIcons.phone, color: Colors.green[800]),
                 title: Text("Call", style: this.bottomNavTextStyle),
-                activeIcon: Icon(Icons.flag, color: Colors.green[800]),
+                activeIcon: Icon(Icons.phone, color: Colors.green[800]),
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline, color: Colors.green[800]),
