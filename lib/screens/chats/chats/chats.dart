@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:falcon/screens/chats/chats/chat.dart';
-import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/screens/chats/chats/chat.dart';
+import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 
 class Chats extends StatefulWidget {

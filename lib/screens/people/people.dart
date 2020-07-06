@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:falcon/screens/people/person.dart';
-import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/screens/people/person.dart';
+import 'package:memomessenger/services/data.service.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';

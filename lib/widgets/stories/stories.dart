@@ -1,4 +1,4 @@
-import 'package:falcon/widgets/stories/story.dart';
+import 'package:memomessenger/widgets/stories/story.dart';
 import 'package:flutter/material.dart';
 
 class Stories extends StatefulWidget {

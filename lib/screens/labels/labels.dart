@@ -1,4 +1,4 @@
-import 'package:falcon/screens/labels/label.dart';
+import 'package:memomessenger/screens/labels/label.dart';
 import 'package:flutter/material.dart';
 
 class Labels extends StatefulWidget {

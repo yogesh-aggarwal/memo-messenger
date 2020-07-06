@@ -1,5 +1,5 @@
-import 'package:falcon/screens/labels/navbar.dart';
-import 'package:falcon/screens/labels/labels.dart';
+import 'package:memomessenger/screens/labels/navbar.dart';
+import 'package:memomessenger/screens/labels/labels.dart';
 import 'package:flutter/material.dart';
 
 class LabelsScreen extends StatelessWidget {

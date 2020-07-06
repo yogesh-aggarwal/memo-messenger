@@ -1,23 +1,23 @@
-import 'package:falcon/screens/calls/screen.dart';
-import 'package:falcon/screens/chats/chats/screen.dart';
-import 'package:falcon/screens/labels/screen.dart';
-import 'package:falcon/screens/people/screen.dart';
-import 'package:falcon/screens/profile/screen.dart';
-import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/screens/calls/screen.dart';
+import 'package:memomessenger/screens/chats/chats/screen.dart';
+import 'package:memomessenger/screens/labels/screen.dart';
+import 'package:memomessenger/screens/people/screen.dart';
+import 'package:memomessenger/screens/profile/screen.dart';
+import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
 void main() {
-  runApp(Falcon());
+  runApp(MemoMessenger());
 }
 
-class Falcon extends StatefulWidget {
+class MemoMessenger extends StatefulWidget {
   @override
-  _FalconState createState() => _FalconState();
+  _MemoMessengerState createState() => _MemoMessengerState();
 }
 
-class _FalconState extends State<Falcon> {
+class _MemoMessengerState extends State<MemoMessenger> {
   int navCurrentIndex = 2;
   var bottomNavTextStyle = GoogleFonts.poppins(
     color: Colors.green[800],

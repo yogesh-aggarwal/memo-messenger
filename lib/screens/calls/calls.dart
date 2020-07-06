@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:falcon/screens/calls/call.dart';
-import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/screens/calls/call.dart';
+import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -16,7 +16,7 @@ class _CallsState extends State<Calls> {
   bool isPermited = true;
 
   void checkPermission() async {
-    bool permission = await Permission.phone.isGranted;
+    bool permission = await Permission.contacts.isGranted;
     this.setState(() {
       this.isPermited = permission;
     });

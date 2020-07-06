@@ -1,7 +1,7 @@
-import 'package:falcon/screens/chats/view/chatList.dart';
-import 'package:falcon/screens/chats/view/navbar.dart';
-import 'package:falcon/screens/chats/view/chat.dart';
-// import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/screens/chats/view/chatList.dart';
+import 'package:memomessenger/screens/chats/view/navbar.dart';
+import 'package:memomessenger/screens/chats/view/chat.dart';
+// import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 
 class ChatViewScreen extends StatefulWidget {

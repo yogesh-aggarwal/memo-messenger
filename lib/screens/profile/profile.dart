@@ -1,5 +1,5 @@
 import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
-import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

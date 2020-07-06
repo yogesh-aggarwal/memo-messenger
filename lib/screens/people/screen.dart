@@ -1,5 +1,5 @@
-import 'package:falcon/screens/people/navbar.dart';
-import 'package:falcon/screens/people/people.dart';
+import 'package:memomessenger/screens/people/navbar.dart';
+import 'package:memomessenger/screens/people/people.dart';
 import 'package:flutter/material.dart';
 
 class PeopleScreen extends StatelessWidget {

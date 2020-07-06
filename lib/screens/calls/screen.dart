@@ -1,5 +1,5 @@
-import 'package:falcon/screens/calls/calls.dart';
-import 'package:falcon/screens/calls/navbar.dart';
+import 'package:memomessenger/screens/calls/calls.dart';
+import 'package:memomessenger/screens/calls/navbar.dart';
 import 'package:flutter/material.dart';
 
 class CallsScreen extends StatelessWidget {

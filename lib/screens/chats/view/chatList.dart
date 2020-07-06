@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:falcon/services/data.service.dart';
+import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 
 class ChatList extends StatefulWidget {

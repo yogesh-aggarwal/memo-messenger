@@ -1,5 +1,5 @@
-import 'package:falcon/screens/profile/profile.dart';
-import 'package:falcon/screens/profile/stories.dart';
+import 'package:memomessenger/screens/profile/profile.dart';
+import 'package:memomessenger/screens/profile/stories.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
