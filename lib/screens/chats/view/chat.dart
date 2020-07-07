@@ -31,10 +31,12 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        "I'm chatting with ${this.chat['otherUser']['name']} (${this.chat['otherUser']})",
-      ),
-    );
+    return this.chat != null
+        ? Container(
+            child: Text(
+              "I'm chatting with ${this.chat['otherUser']['name']} (${this.chat['otherUser']})",
+            ),
+          )
+        : Container();
   }
 }

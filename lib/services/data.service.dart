@@ -12,7 +12,7 @@ class Data {
   static BehaviorSubject<dynamic> currentUser = new BehaviorSubject();
 
   // ignore: close_sinks
-  static BehaviorSubject<List<dynamic>> messages = new BehaviorSubject();
+  static BehaviorSubject<dynamic> messages = new BehaviorSubject();
   // ignore: close_sinks
   static BehaviorSubject<List<Contact>> contacts = new BehaviorSubject();
   // ignore: close_sinks
@@ -22,6 +22,7 @@ class Data {
   static int currentChatIndex = 0;
   // ignore: close_sinks
   static BehaviorSubject<List<dynamic>> chats = new BehaviorSubject();
+  // ignore: close_sinks
 
   static Firestore firestore = Firestore.instance;
   static DocumentReference messagesRef =
@@ -37,9 +38,11 @@ class Data {
   );
 
   static setDummyMessage() async {
-    await messagesRef
-        .collection("people/r3jwPaYs1MoJ5S8lphiR/messages")
-        .document("Hx6LQg0n6yLFiOznqzN7")
+    await firestore
+        .collection("chats")
+        .document("wWG5VVRaOpvJxuGKt3IC")
+        .collection("messages")
+        .document("dd6ZKl6Ge7bzOUbTDCIK")
         .setData({
       "text": "Hello Yogesh!",
       "image": null,
@@ -61,49 +64,46 @@ class Data {
       "isTemplate": false,
       "autoDelete": null,
       "scheduledAt": null,
+      "sentBy": Data.userId,
       "labels": [],
       "dateSent": Timestamp.now(),
     });
   }
 
   static getChats() async {
-    final peopleRef = messagesRef.collection("people");
-    // ignore: cancel_subscriptions
-    peopleRef.snapshots().listen((chatsSnapshot) async {
-      final chats = chatsSnapshot.documents;
-      List<dynamic> _chats = [];
+    Data.setDummyMessage();
+    // final peopleRef = messagesRef.collection("people");
+    // // ignore: cancel_subscriptions
+    // peopleRef.snapshots().listen((chatsSnapshot) async {
+    //   print("Value till messages updated!");
+    //   final chats = chatsSnapshot.documents;
+    //   List<dynamic> _chats = [];
 
-      for (DocumentSnapshot chat in chats) {
-        dynamic _chat = chat.data;
-        _chat["otherUserId"] = chat.documentID;
-        _chat["otherUser"] =
-            (await usersRef.document(chat.documentID).get()).data;
-        _chat["messages"] = (await peopleRef
-                .document(chat.documentID)
-                .collection("messages")
-                .orderBy("dateSent", descending: true)
-                .getDocuments())
-            .documents
-            .map((message) => message.data)
-            .toList();
+    //   for (DocumentSnapshot chat in chats) {
+    //     dynamic _chat = chat.data;
+    //     _chat["otherUserId"] = chat.documentID;
+    //     _chat["otherUser"] =
+    //         (await usersRef.document(chat.documentID).get()).data;
+    //     _chats.add(_chat);
+    //   }
 
-        _chats.add(_chat);
-      }
-
-      Data.chats.add(_chats);
-    });
+    //   Data.chats.add(_chats);
+    // });
   }
 
-  static getMessages() {
+  static getMessages({@required String userId}) async {
+    // messagesRef
     firestore
         .collection("messages")
-        .where("chatId", isEqualTo: "HcLtPW2IbjSywTgUcbZW")
-        .limit(25)
-        .orderBy("dateSent", descending: true)
-        .getDocuments()
-        .asStream()
-        .listen((event) {
-      print(event);
+        .document(userId)
+        .collection("people")
+        .document("r3jwPaYs1MoJ5S8lphiR")
+        .collection("messages")
+        // .orderBy("dateSent", descending: true)
+        .snapshots()
+        .listen((messages) {
+      print("Value after messages updated!");
+      print(messages);
     });
   }
 

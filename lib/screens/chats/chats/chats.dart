@@ -19,7 +19,6 @@ class _ChatsState extends State<Chats> {
     this.chatsSub = Data.chats.listen((chats) {
       setState(() {
         this.chats = chats;
-        print(this.chats);
       });
     });
     super.initState();

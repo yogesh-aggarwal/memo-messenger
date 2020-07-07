@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:memomessenger/screens/chats/view/screen.dart';
 import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Chat extends StatefulWidget {
   final chatIndex;
 
-  Chat({@required this.chatIndex}) {}
+  Chat({@required this.chatIndex});
 
   @override
   _ChatState createState() => _ChatState();
@@ -30,24 +31,17 @@ class _ChatState extends State<Chat> {
     setState(() {
       chat = Data.chats.value[widget.chatIndex];
     });
-    print(this.chat);
     super.initState();
   }
 
-  getSubtitle({@required dynamic message}) {
-    return Text(
-      message["text"],
-      style: GoogleFonts.poppins(
-        fontWeight: FontWeight.w400,
-        fontSize: 15,
-      ),
-      overflow: TextOverflow.ellipsis,
-    );
+  getSubtitle() {
+    print("su");
+    Data.getMessages(userId: this.chat["userId"]);
+    return Text("Message");
   }
 
   @override
   Widget build(BuildContext context) {
-    print(this.chat);
     if (this.chat != null) {
       return ListTile(
         onTap: () {
@@ -83,7 +77,7 @@ class _ChatState extends State<Chat> {
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: getSubtitle(message: this.chat["messages"][0]),
+        subtitle: getSubtitle(),
         trailing: Container(
           decoration: BoxDecoration(
             color: Colors.green[500],

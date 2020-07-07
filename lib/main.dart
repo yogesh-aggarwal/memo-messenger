@@ -30,7 +30,7 @@ class _MemoMessengerState extends State<MemoMessenger> {
 
   void prepareData() async {
     Data.getUser();
-    Data.getChats();
+    // Data.getChats();
     Data.getContacts();
     Data.getCalls();
   }
