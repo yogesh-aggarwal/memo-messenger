@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "165218096939",
+    "firebase_url": "https://memo-messenger.firebaseio.com",
+    "project_id": "memo-messenger",
+    "storage_bucket": "memo-messenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165218096939:android:97b13fd12a78f15a62d76e",
+        "android_client_info": {
+          "package_name": "com.memo.messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165218096939-lrtd4q9ni59i9mi8qfii93i7d70g202n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGtkat2Q-JacR72iOwdW8FgEBzMWF0gbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165218096939-lrtd4q9ni59i9mi8qfii93i7d70g202n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

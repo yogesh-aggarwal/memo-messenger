@@ -29,6 +29,7 @@ class _MemoMessengerState extends State<MemoMessenger> {
   PageController pageController = new PageController(initialPage: 2);
 
   void prepareData() async {
+    Data.getUser();
     Data.getChats();
     Data.getContacts();
     Data.getCalls();
@@ -58,6 +59,8 @@ class _MemoMessengerState extends State<MemoMessenger> {
 
   @override
   Widget build(BuildContext context) {
+    Data.getChats();
+
     return MaterialApp(
       theme: ThemeData(
         accentColor: Colors.green,

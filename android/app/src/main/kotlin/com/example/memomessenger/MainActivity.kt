@@ -1,4 +1,4 @@
-package com.messenger.memo
+package com.memo.messenger
 
 import io.flutter.embedding.android.FlutterActivity
 

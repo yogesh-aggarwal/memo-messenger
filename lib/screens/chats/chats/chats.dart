@@ -19,6 +19,7 @@ class _ChatsState extends State<Chats> {
     this.chatsSub = Data.chats.listen((chats) {
       setState(() {
         this.chats = chats;
+        print(this.chats);
       });
     });
     super.initState();
@@ -32,7 +33,6 @@ class _ChatsState extends State<Chats> {
 
   @override
   Widget build(BuildContext context) {
-    // return Text("Gsre");
     if (this.chats != null) {
       return Container(
         child: Expanded(
@@ -40,7 +40,7 @@ class _ChatsState extends State<Chats> {
             shrinkWrap: true,
             itemCount: this.chats.length,
             itemBuilder: (context, index) {
-              return Chat(this.chats[index], index);
+              return Chat(chatIndex: index);
             },
           ),
         ),

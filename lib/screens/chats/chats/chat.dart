@@ -1,53 +1,57 @@
-import 'dart:async';
-
 import 'package:memomessenger/screens/chats/view/screen.dart';
 import 'package:memomessenger/services/data.service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Chat extends StatefulWidget {
-  dynamic chat;
-  int chatIndex;
+  final chatIndex;
 
-  Chat(dynamic chat, int index) {
-    this.chat = chat;
-    this.chatIndex = index;
-  }
+  Chat({@required this.chatIndex}) {}
 
   @override
   _ChatState createState() => _ChatState();
 }
 
 class _ChatState extends State<Chat> {
+  var chat;
+
   bool isInContacts(int phone) {
     return true;
   }
 
   String getName(int phone) {
     return isInContacts(phone)
-        ? widget.chat["otherUser"]["name"]
-        : "${widget.chat['name']} (${widget.chat['phoneNo']})";
+        ? this.chat["otherUser"]["name"]
+        : "${this.chat['name']} (${this.chat['phoneNo']})";
   }
 
-  parse() {
-    if (widget.chat["participants"] != null) {
-      for (var user in widget.chat["participants"]) {
-        if (user["userId"] == Data.currentUser["userId"]) {
-          widget.chat["thisUser"] = user;
-        } else {
-          widget.chat["otherUser"] = user;
-        }
-      }
-    }
+  @override
+  void initState() {
+    setState(() {
+      chat = Data.chats.value[widget.chatIndex];
+    });
+    print(this.chat);
+    super.initState();
+  }
+
+  getSubtitle({@required dynamic message}) {
+    return Text(
+      message["text"],
+      style: GoogleFonts.poppins(
+        fontWeight: FontWeight.w400,
+        fontSize: 15,
+      ),
+      overflow: TextOverflow.ellipsis,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    this.parse();
-    if (widget.chat != null) {
+    print(this.chat);
+    if (this.chat != null) {
       return ListTile(
         onTap: () {
-          Data.currentChat.add(widget.chat);
+          Data.currentChat.add(this.chat);
           Data.currentChatIndex = widget.chatIndex;
           Navigator.push(
             context,
@@ -65,28 +69,21 @@ class _ChatState extends State<Chat> {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(13),
           child: Image(
-            image: NetworkImage(widget.chat["otherUser"]['profileImg']),
+            image: NetworkImage(this.chat["otherUser"]['profileImg']),
             width: 50,
             height: 50,
             fit: BoxFit.cover,
           ),
         ),
         title: Text(
-          this.getName(widget.chat["otherUser"]["phoneNo"]),
+          this.getName(this.chat["otherUser"]["phone"]["number"]),
           style: GoogleFonts.poppins(
             fontWeight: FontWeight.w600,
             fontSize: 18,
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: Text(
-          widget.chat["latestMessage"]["content"],
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w400,
-            fontSize: 15,
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
+        subtitle: getSubtitle(message: this.chat["messages"][0]),
         trailing: Container(
           decoration: BoxDecoration(
             color: Colors.green[500],
