@@ -30,7 +30,7 @@ class _MemoMessengerState extends State<MemoMessenger> {
 
   void prepareData() async {
     Data.getUser();
-    // Data.getChats();
+     Data.getChats();
     Data.getContacts();
     Data.getCalls();
   }
@@ -59,8 +59,6 @@ class _MemoMessengerState extends State<MemoMessenger> {
 
   @override
   Widget build(BuildContext context) {
-    Data.getChats();
-
     return MaterialApp(
       theme: ThemeData(
         accentColor: Colors.green,

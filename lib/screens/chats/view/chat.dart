@@ -9,34 +9,21 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
-  dynamic chat;
-  // ignore: cancel_subscriptions
-  StreamSubscription chatSub;
-
-  @override
-  initState() {
-    this.chatSub = Data.currentChat.listen((chat) {
-      setState(() {
-        this.chat = chat;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  dispose() {
-    this.chatSub.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return this.chat != null
-        ? Container(
+    return StreamBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          var _chat = snapshot.data;
+          return Container(
             child: Text(
-              "I'm chatting with ${this.chat['otherUser']['name']} (${this.chat['otherUser']})",
+              "I'm chatting with ${_chat['otherUser']['name']} (${_chat['otherUser']})",
             ),
-          )
-        : Container();
+          );
+        } else {
+          return Data.linearProgress;
+        }
+      },
+    );
   }
 }

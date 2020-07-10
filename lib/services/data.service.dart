@@ -71,24 +71,24 @@ class Data {
   }
 
   static getChats() async {
-    Data.setDummyMessage();
-    // final peopleRef = messagesRef.collection("people");
-    // // ignore: cancel_subscriptions
-    // peopleRef.snapshots().listen((chatsSnapshot) async {
-    //   print("Value till messages updated!");
-    //   final chats = chatsSnapshot.documents;
-    //   List<dynamic> _chats = [];
+//    Data.setDummyMessage();
+     final peopleRef = messagesRef.collection("people");
+     // ignore: cancel_subscriptions
+     peopleRef.snapshots().listen((chatsSnapshot) async {
+       print("Value till messages updated!");
+       final chats = chatsSnapshot.documents;
+       List<dynamic> _chats = [];
 
-    //   for (DocumentSnapshot chat in chats) {
-    //     dynamic _chat = chat.data;
-    //     _chat["otherUserId"] = chat.documentID;
-    //     _chat["otherUser"] =
-    //         (await usersRef.document(chat.documentID).get()).data;
-    //     _chats.add(_chat);
-    //   }
+       for (DocumentSnapshot chat in chats) {
+         dynamic _chat = chat.data;
+         _chat["otherUserId"] = chat.documentID;
+         _chat["otherUser"] =
+             (await usersRef.document(chat.documentID).get()).data;
+         _chats.add(_chat);
+       }
 
-    //   Data.chats.add(_chats);
-    // });
+       Data.chats.add(_chats);
+     });
   }
 
   static getMessages({@required String userId}) async {
