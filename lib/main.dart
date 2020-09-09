@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Activities/ChatsActivity/Activity.dart';
+import 'package:memomessenger/Services/Constants.dart';
 
 void main() {
   runApp(Main());
+}
+
+BottomNavigationBarItem getBottomNavigationItem(
+    {@required String name,
+    @required IconData inactiveIcon,
+    @required IconData activeIcon}) {
+  return BottomNavigationBarItem(
+    icon: Icon(inactiveIcon, color: bottomAppBarIconColor),
+    title: Text(name, style: bottomAppBarIconLabelTextStyle),
+    activeIcon: Icon(activeIcon, color: bottomAppBarIconColor),
+  );
 }
 
 class Main extends StatelessWidget {
@@ -11,7 +23,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        accentColor: Colors.green,
+        accentColor: themeAccentColor,
         accentColorBrightness: Brightness.light,
         fontFamily: "Poppins",
         textTheme: TextTheme(),
@@ -70,30 +82,30 @@ class _MemoMessengerState extends State<MemoMessenger> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people_outline, color: Colors.green[800]),
-            title: Text("People"),
-            activeIcon: Icon(Icons.people, color: Colors.green[800]),
+          getBottomNavigationItem(
+            name: "People",
+            inactiveIcon: Icons.people_outline,
+            activeIcon: Icons.people,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.label_outline, color: Colors.green[800]),
-            title: Text("Labels"),
-            activeIcon: Icon(Icons.label, color: Colors.green[800]),
+          getBottomNavigationItem(
+            name: "Labels",
+            inactiveIcon: Icons.label_outline,
+            activeIcon: Icons.label,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline, color: Colors.green[800]),
-            title: Text("Chats"),
-            activeIcon: Icon(Icons.chat_bubble, color: Colors.green[800]),
+          getBottomNavigationItem(
+            name: "Chats",
+            inactiveIcon: Icons.chat_bubble_outline,
+            activeIcon: Icons.chat_bubble,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(LineAwesomeIcons.phone, color: Colors.green[800]),
-            title: Text("Call"),
-            activeIcon: Icon(Icons.phone, color: Colors.green[800]),
+          getBottomNavigationItem(
+            name: "Call",
+            inactiveIcon: LineAwesomeIcons.phone,
+            activeIcon: Icons.phone,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline, color: Colors.green[800]),
-            title: Text("Profile"),
-            activeIcon: Icon(Icons.person, color: Colors.green[800]),
+          getBottomNavigationItem(
+            name: "Profile",
+            inactiveIcon: Icons.person_outline,
+            activeIcon: Icons.person,
           ),
         ],
         currentIndex: this._navCurrentIndex,
