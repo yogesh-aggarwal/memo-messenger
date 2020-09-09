@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:memomessenger/Activities/ChatsActivity/Activity.dart';
 
 void main() {
   runApp(Main());
@@ -61,7 +62,7 @@ class _MemoMessengerState extends State<MemoMessenger> {
             Container(
               child: Text("Hello world!"),
             ),
-            Container(),
+            ChatsActivity(),
             Container(),
             Container(),
           ],
