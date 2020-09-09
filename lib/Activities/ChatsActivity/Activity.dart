@@ -5,12 +5,14 @@ import 'package:memomessenger/Activities/ChatActivity/Activity.dart';
 import 'package:memomessenger/Services/Chats.dart';
 import 'package:memomessenger/Services/Types/ChatsActivity.dart';
 
-Widget getChatTiles(List<Chat> chats) {
+Widget getChatTiles(Map<String, Chat> chats) {
   return ListView.builder(
     shrinkWrap: true,
     itemCount: chats.length,
     itemBuilder: (BuildContext context, int index) {
-      final Chat chat = chats[index];
+      final List<String> chatIds = chats.keys.toList();
+      final Chat chat = chats[chatIds[index]];
+
       return ListTile(
         title: Text(chat.sender.name),
         subtitle: Text(chat.message.text),
@@ -26,10 +28,12 @@ Widget getChatTiles(List<Chat> chats) {
           ),
         ),
         onTap: () {
-          print("Open ${chat.id}");
-          Navigator.push(context, CupertinoPageRoute(builder: (BuildContext context) {
-            return ChatActivity(id: chat.id);
-          }));
+          Navigator.push(
+            context,
+            CupertinoPageRoute(builder: (BuildContext context) {
+              return ChatActivity(chatId: chat.id);
+            }),
+          );
         },
       );
     },
@@ -53,11 +57,10 @@ class ChatsActivity extends StatelessWidget {
           Expanded(
             child: StreamBuilder(
               stream: chatActivityChatList,
-              initialData: [],
-              builder:
-                  (BuildContext context, AsyncSnapshot<List<dynamic>> data) {
+              initialData: {},
+              builder: (BuildContext context, AsyncSnapshot<Object> data) {
                 if (data.hasData) {
-                  final List<dynamic> chats = data.data;
+                  final Map<dynamic, dynamic> chats = data.data;
                   if (chats.length != 0) {
                     return getChatTiles(chats);
                   } else {
