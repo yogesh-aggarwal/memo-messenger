@@ -15,7 +15,7 @@ Widget getChatTiles(Map<String, Chat> chats) {
 
       return ListTile(
         title: Text(chat.sender.name),
-        subtitle: Text(chat.message.text),
+        subtitle: Text(chat.messages.last.text),
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: Container(

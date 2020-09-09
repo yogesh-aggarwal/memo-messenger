@@ -11,12 +11,12 @@ class ImageWithHash {
 }
 
 class CurrentUser {
-  final String uid;
+  final String id;
   final String name;
   final ImageWithHash profileImg;
 
   CurrentUser({
-    @required this.uid,
+    @required this.id,
     @required this.name,
     @required this.profileImg,
   });

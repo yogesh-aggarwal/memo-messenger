@@ -5,11 +5,11 @@ import 'package:memomessenger/Services/Types/Fundamental.dart';
 class Chat {
   final String id;
   final SenderUser sender;
-  final Message message;
+  final List<Message> messages;
 
   Chat({
     @required this.id,
     @required this.sender,
-    @required this.message,
+    @required this.messages,
   });
 }

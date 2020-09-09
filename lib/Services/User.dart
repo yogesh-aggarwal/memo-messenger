@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 
 BehaviorSubject<CurrentUser> currentUser = new BehaviorSubject.seeded(
   CurrentUser(
-    uid: "Gwi9iJzZ83lZPRvfI3YK",
+    id: "Gwi9iJzZ83lZPRvfI3YK",
     name: "Current User",
     profileImg: ImageWithHash(hash: "", url: ""),
   ),
