@@ -1,12 +1,38 @@
 import 'package:flutter/foundation.dart';
 
+class ImageWithHash {
+  final String hash;
+  final String url;
+
+  ImageWithHash({
+    @required this.hash,
+    @required this.url,
+  });
+}
+
 class CurrentUser {
   final String uid;
-  final String profileImg;
+  final String name;
+  final ImageWithHash profileImg;
 
   CurrentUser({
     @required this.uid,
+    @required this.name,
     @required this.profileImg,
+  });
+}
+
+class SenderUser {
+  final String uid;
+  final String name;
+  final ImageWithHash profileImg;
+  final PhoneNumber phone;
+
+  SenderUser({
+    @required this.uid,
+    @required this.name,
+    @required this.profileImg,
+    @required this.phone,
   });
 }
 

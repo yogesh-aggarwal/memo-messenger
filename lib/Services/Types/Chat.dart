@@ -1,15 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:memomessenger/Services/Types/Fundamental.dart';
 
-class ImageMessage {
-  final String hash;
-  final String url;
-
-  ImageMessage({
-    @required this.hash,
-    @required this.url,
-  });
-}
+class ImageMessage extends ImageWithHash {}
 
 class DocumentMessage {
   final String url;
