@@ -55,12 +55,12 @@ class ChatsActivity extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: StreamBuilder(
+            child: StreamBuilder<Map<String, Chat>>(
               stream: chatActivityChatList,
               initialData: {},
-              builder: (BuildContext context, AsyncSnapshot<Object> data) {
+              builder: (BuildContext context, AsyncSnapshot<Map<String, Chat>> data) {
                 if (data.hasData) {
-                  final Map<dynamic, dynamic> chats = data.data;
+                  final Map<String, Chat> chats = data.data;
                   if (chats.length != 0) {
                     return getChatTiles(chats);
                   } else {
