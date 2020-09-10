@@ -22,19 +22,8 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        accentColor: themeAccentColor,
-        accentColorBrightness: Brightness.light,
-        fontFamily: "Poppins",
-        textTheme: TextTheme(),
-      ),
-      builder: (context, child) {
-        return ScrollConfiguration(
-          behavior: ScrollBehavior()
-            ..buildViewportChrome(context, null, AxisDirection.down),
-          child: child,
-        );
-      },
+      theme: theme,
+      builder: materialAppBuilder,
       debugShowCheckedModeBanner: false,
       home: MemoMessenger(),
     );

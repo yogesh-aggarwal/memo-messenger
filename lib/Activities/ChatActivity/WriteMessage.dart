@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Services/Chats.dart';
@@ -33,7 +34,8 @@ class MessageInputUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String currentUserId = currentUser.value.id;
-    String text = "";
+    TextEditingController textController = new TextEditingController();
+
     return Container(
       margin: EdgeInsets.only(top: 5),
       padding: EdgeInsets.only(top: 2, bottom: 2, left: 5, right: 2),
@@ -49,14 +51,11 @@ class MessageInputUI extends StatelessWidget {
               width: MediaQuery.of(context).size.width * .58,
               // height: 20,
               child: TextField(
+                controller: textController,
                 decoration: const InputDecoration(
                   hintText: "Convey your message",
                   border: InputBorder.none,
                 ),
-                onChanged: (String message) {
-                  text = message;
-                },
-                autofocus: true,
                 autocorrect: true,
                 keyboardType: TextInputType.multiline,
               ),
@@ -65,7 +64,9 @@ class MessageInputUI extends StatelessWidget {
           MessageAction(
             icon: Icons.send,
             onTap: () {
-              sendMessage(chatId, Message(text: text, senderId: currentUserId));
+              sendMessage(chatId,
+                  Message(text: textController.text, senderId: currentUserId));
+              textController.clear();
             },
           ),
         ],
