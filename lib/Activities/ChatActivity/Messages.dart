@@ -21,7 +21,7 @@ class ChatMessage extends StatelessWidget {
       alignment:
           isFromCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 3),
+        margin: EdgeInsets.symmetric(vertical: 5),
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * .75,
@@ -42,9 +42,9 @@ class ChatMessage extends StatelessWidget {
                   BoxShadow(color: themeAccentColor[300], blurRadius: 10),
                 ]
               : [
-                  BoxShadow(color: Colors.black26, blurRadius: 10),
+                  BoxShadow(color: Color(0XFFCCCCCC), blurRadius: 10),
                 ],
-          color: isFromCurrentUser ? themeAccentColor[500] : Color(0xFFEbE7EA),
+          color: isFromCurrentUser ? themeAccentColor[500] : Color(0xFFEEEEEE),
         ),
         child: Column(
           children: [
@@ -62,8 +62,8 @@ class ChatMessage extends StatelessWidget {
 }
 
 class ChatMessages extends StatelessWidget {
-  BuildContext context;
-  List<Message> messages;
+  final BuildContext context;
+  final List<Message> messages;
 
   ChatMessages({@required this.context, @required this.messages});
 

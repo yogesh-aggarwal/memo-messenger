@@ -5,39 +5,55 @@ import 'package:memomessenger/Activities/ChatActivity/Activity.dart';
 import 'package:memomessenger/Services/Chats.dart';
 import 'package:memomessenger/Services/Types/ChatsActivity.dart';
 
-Widget getChatTiles(Map<String, Chat> chats) {
-  return ListView.builder(
-    shrinkWrap: true,
-    itemCount: chats.length,
-    itemBuilder: (BuildContext context, int index) {
-      final List<String> chatIds = chats.keys.toList();
-      final Chat chat = chats[chatIds[index]];
+class ChatTile extends StatelessWidget {
+  final Map<String, Chat> chats;
 
-      return ListTile(
-        title: Text(chat.sender.name),
-        subtitle: Text(chat.messages.last.text),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-            width: 45,
-            height: 45,
-            child: BlurHash(
-              hash: chat.sender.profileImg.hash,
-              image: chat.sender.profileImg.url,
+  ChatTile({@required this.chats});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: chats.length,
+      itemBuilder: (BuildContext context, int index) {
+        final List<String> chatIds = chats.keys.toList();
+        final Chat chat = chats[chatIds[index]];
+
+        return ListTile(
+          title: Text(
+            chat.sender.name,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
             ),
           ),
-        ),
-        onTap: () {
-          Navigator.push(
-            context,
-            CupertinoPageRoute(builder: (BuildContext context) {
-              return ChatActivity(chatId: chat.id);
-            }),
-          );
-        },
-      );
-    },
-  );
+          subtitle: Text(
+            chat.messages.last.text,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Container(
+              width: 45,
+              height: 45,
+              child: BlurHash(
+                hash: chat.sender.profileImg.hash,
+                image: chat.sender.profileImg.url,
+              ),
+            ),
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(builder: (BuildContext context) {
+                return ChatActivity(chatId: chat.id);
+              }),
+            );
+          },
+        );
+      },
+    );
+  }
 }
 
 class ChatsActivity extends StatelessWidget {
@@ -58,11 +74,12 @@ class ChatsActivity extends StatelessWidget {
             child: StreamBuilder<Map<String, Chat>>(
               stream: chatActivityChatList,
               initialData: {},
-              builder: (BuildContext context, AsyncSnapshot<Map<String, Chat>> data) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<Map<String, Chat>> data) {
                 if (data.hasData) {
                   final Map<String, Chat> chats = data.data;
                   if (chats.length != 0) {
-                    return getChatTiles(chats);
+                    return ChatTile(chats: chats);
                   } else {
                     return Text("No chats!", textAlign: TextAlign.center);
                   }
