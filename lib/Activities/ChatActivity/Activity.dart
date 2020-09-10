@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Services/Chats.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/Chat.dart';
@@ -6,13 +7,19 @@ import 'package:memomessenger/Services/Types/ChatsActivity.dart';
 import 'package:memomessenger/Services/User.dart';
 
 Widget buildMessageWidget(
-    BuildContext context, Message message, String currentUserId) {
+  BuildContext context,
+  Message message,
+  String currentUserId,
+) {
   final bool isFromCurrentUser = message.senderId == currentUserId;
-  return LimitedBox(
-    maxWidth: MediaQuery.of(context).size.width * .75,
+  return Align(
+    alignment: isFromCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
     child: Container(
-      margin: EdgeInsets.symmetric(vertical: 2),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      margin: EdgeInsets.symmetric(vertical: 3),
+      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      constraints: BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width * .75,
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(
@@ -24,17 +31,24 @@ Widget buildMessageWidget(
           bottomLeft: Radius.circular(messageBorderRadius),
           bottomRight: Radius.circular(messageBorderRadius),
         ),
-        color: isFromCurrentUser ? themeAccentColor[500] : Colors.cyan,
+        boxShadow: isFromCurrentUser
+            ? [
+                BoxShadow(color: themeAccentColor[300], blurRadius: 10),
+              ]
+            : [
+                BoxShadow(color: Colors.black26, blurRadius: 10),
+              ],
+        color: isFromCurrentUser ? themeAccentColor[500] : Color(0xFFEbE7EA),
       ),
-      child: Align(
-        alignment:
-            isFromCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
-        child: Text(
-          message.text,
-          style: TextStyle(
-            color: isFromCurrentUser ? Colors.white : Colors.black,
+      child: Column(
+        children: [
+          Text(
+            message.text,
+            style: TextStyle(
+              color: isFromCurrentUser ? Colors.white : Colors.black,
+            ),
           ),
-        ),
+        ],
       ),
     ),
   );
@@ -42,46 +56,73 @@ Widget buildMessageWidget(
 
 Widget buildChatMessagesUI(BuildContext context, List<Message> messages) {
   final String currentUserId = currentUser.value.id;
-  // final totalLength = messages.length;
-  // return ListView.builder(
-  //   itemCount: messages.length,
-  //   scrollDirection: Axis.vertical,
-  //   reverse: true,
-  //   shrinkWrap: true,
-  //   itemBuilder: (BuildContext context, int index) {
-  //     final Message message = messages[totalLength - index - 1];
-  //     final bool isFromCurrentUser = message.senderId == currentUserId;
-  //
-  //     return ;
-  //   },
   return SingleChildScrollView(
-    child: Column(
-      verticalDirection: VerticalDirection.up,
-      children: messages.reversed.map((Message message) {
-        return buildMessageWidget(context, message, currentUserId);
-      }).toList(),
+    reverse: true,
+    padding: EdgeInsets.symmetric(vertical: 10),
+    child: Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        verticalDirection: VerticalDirection.up,
+        children: messages.reversed.map((Message message) {
+          return buildMessageWidget(context, message, currentUserId);
+        }).toList(),
+      ),
     ),
   );
 }
 
-Widget buildMessageInputUI({@required String chatId}) {
-  final String currentUserId = currentUser.value.id;
-  return TextFormField(
-    decoration: const InputDecoration(
-      hintText: 'Enter your email',
+Widget buildMessageAction({@required IconData icon, @required Function onTap}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
+      padding: EdgeInsets.symmetric(vertical: 6, horizontal: 6),
+      child: Icon(icon, color: themeAccentColor[800]),
     ),
-    onChanged: (String message) {
-      sendMessage(chatId, Message(text: message, senderId: currentUserId));
-    },
-    validator: (value) {
-      if (value.isEmpty) {
-        return 'Please enter some text';
-      }
-      return null;
-    },
-    autofocus: true,
-    autocorrect: true,
-    keyboardType: TextInputType.multiline,
+  );
+}
+
+Widget buildMessageInputUI(BuildContext context, {@required String chatId}) {
+  final String currentUserId = currentUser.value.id;
+  String text = "";
+  return Container(
+    margin: EdgeInsets.only(top: 5),
+    padding: EdgeInsets.only(top: 2, bottom: 2, left: 5, right: 2),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        buildMessageAction(icon: LineAwesomeIcons.camera, onTap: () {}),
+        buildMessageAction(icon: LineAwesomeIcons.photo_video, onTap: () {}),
+        buildMessageAction(icon: LineAwesomeIcons.microphone, onTap: () {}),
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          child: Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width * .58,
+            // height: 20,
+            child: TextField(
+              decoration: const InputDecoration(
+                hintText: "Convey your message",
+                border: InputBorder.none,
+              ),
+              onChanged: (String message) {
+                text = message;
+              },
+              autofocus: true,
+              autocorrect: true,
+              keyboardType: TextInputType.multiline,
+            ),
+          ),
+        ),
+        buildMessageAction(
+            icon: Icons.send,
+            onTap: () {
+              sendMessage(chatId, Message(text: text, senderId: currentUserId));
+            }),
+      ],
+    ),
   );
 }
 
@@ -115,7 +156,7 @@ class ChatActivity extends StatelessWidget {
                     },
                   ),
                 ),
-                buildMessageInputUI(chatId: chatId),
+                buildMessageInputUI(context, chatId: chatId),
               ],
             ),
           ),
