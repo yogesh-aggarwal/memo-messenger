@@ -72,7 +72,9 @@ class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+            },
           ),
         ],
       ),
@@ -96,7 +98,7 @@ class ChatActivity extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: SenderInfoAppBar(
-          height: 60,
+          height: 70,
           chatId: chatId,
         ),
         body: SafeArea(
