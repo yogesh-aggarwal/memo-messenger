@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:memomessenger/Activities/ChatActivity/Messages.dart';
 import 'package:memomessenger/Activities/ChatActivity/WriteMessage.dart';
+import 'package:memomessenger/Activities/UserProfileActivity/Activity.dart';
 import 'package:memomessenger/Services/Chats.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/ChatsActivity.dart';
@@ -30,38 +32,52 @@ class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
                   AsyncSnapshot<Map<String, Chat>> data) {
                 if (data.hasData && data.data[chatId] != null) {
                   final Chat chat = data.data[chatId];
-                  return ListTile(
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        child: BlurHash(
-                          hash: chat.sender.profileImg.hash,
-                          image: chat.sender.profileImg.url,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (BuildContext context) {
+                            return UserProfileActivity(
+                              userId: "Hello",
+                            );
+                          },
                         ),
-                      ),
-                    ),
-                    title: Text(
-                      chat.sender.name,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
-                      ),
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: Colors.green,
+                      );
+                    },
+                    child: ListTile(
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Container(
+                          width: 45,
+                          height: 45,
+                          child: BlurHash(
+                            hash: chat.sender.profileImg.hash,
+                            image: chat.sender.profileImg.url,
                           ),
-                          width: 10,
-                          height: 10,
                         ),
-                        Text("Active"),
-                      ],
+                      ),
+                      title: Text(
+                        chat.sender.name,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20,
+                        ),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.green,
+                            ),
+                            width: 10,
+                            height: 10,
+                          ),
+                          Text("Active"),
+                        ],
+                      ),
                     ),
                   );
                 } else {
