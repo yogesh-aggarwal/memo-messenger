@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:memomessenger/Activities/ChatActivity/Activity.dart';
+import 'package:memomessenger/Activities/UserProfileActivity/Activity.dart';
 import 'package:memomessenger/Services/Chats.dart';
 import 'package:memomessenger/Services/Types/ChatsActivity.dart';
 
@@ -31,14 +32,28 @@ class ChatTile extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-              width: 45,
-              height: 45,
-              child: BlurHash(
-                hash: chat.sender.profileImg.hash,
-                image: chat.sender.profileImg.url,
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (BuildContext context) {
+                    return UserProfileActivity(
+                      userId: "Hello",
+                    );
+                  },
+                ),
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                width: 45,
+                height: 45,
+                child: BlurHash(
+                  hash: chat.sender.profileImg.hash,
+                  image: chat.sender.profileImg.url,
+                ),
               ),
             ),
           ),
@@ -65,9 +80,18 @@ class ChatsActivity extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-            child: Text(
-              "Chats",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Chats",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {},
+                ),
+              ],
             ),
           ),
           Expanded(
