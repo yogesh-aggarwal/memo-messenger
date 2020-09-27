@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Services/Chats.dart';
-import 'package:memomessenger/Services/User.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/Chat.dart';
+import 'package:memomessenger/Services/User.dart';
 
 class MessageAction extends StatelessWidget {
   final IconData icon;
@@ -48,7 +48,7 @@ class MessageInputUI extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 5),
             child: Container(
-              width: MediaQuery.of(context).size.width * .58,
+              width: MediaQuery.of(context).size.width - 42 - 42 - 42 - 42,
               // height: 20,
               child: TextField(
                 controller: textController,
