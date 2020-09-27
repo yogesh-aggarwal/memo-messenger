@@ -57,6 +57,7 @@ class MessageInputUI extends StatelessWidget {
                   border: InputBorder.none,
                 ),
                 autocorrect: true,
+                autofocus: true,
                 keyboardType: TextInputType.multiline,
               ),
             ),

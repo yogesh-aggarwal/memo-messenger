@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:memomessenger/Services/User.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/Chat.dart';
+import 'package:memomessenger/Services/User.dart';
 
 class ChatMessage extends StatelessWidget {
   final BuildContext context;
@@ -21,7 +21,7 @@ class ChatMessage extends StatelessWidget {
       alignment:
           isFromCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 5),
+        margin: EdgeInsets.symmetric(vertical: 2),
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * .75,
@@ -37,13 +37,13 @@ class ChatMessage extends StatelessWidget {
             bottomLeft: Radius.circular(messageBorderRadius),
             bottomRight: Radius.circular(messageBorderRadius),
           ),
-          boxShadow: isFromCurrentUser
-              ? [
-                  BoxShadow(color: themeAccentColor[300], blurRadius: 10),
-                ]
-              : [
-                  BoxShadow(color: Color(0XFFCCCCCC), blurRadius: 10),
-                ],
+          // boxShadow: isFromCurrentUser
+          //     ? [
+          //         BoxShadow(color: themeAccentColor[300], blurRadius: 10),
+          //       ]
+          //     : [
+          //         BoxShadow(color: Color(0XFFCCCCCC), blurRadius: 10),
+          //       ],
           color: isFromCurrentUser ? themeAccentColor[500] : Color(0xFFEEEEEE),
         ),
         child: Column(
@@ -73,6 +73,7 @@ class ChatMessages extends StatelessWidget {
     return SingleChildScrollView(
       reverse: true,
       padding: EdgeInsets.symmetric(vertical: 10),
+      physics: BouncingScrollPhysics(),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Column(
