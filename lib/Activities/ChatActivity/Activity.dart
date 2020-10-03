@@ -5,7 +5,6 @@ import 'package:memomessenger/Activities/ChatActivity/Messages.dart';
 import 'package:memomessenger/Activities/ChatActivity/WriteMessage.dart';
 import 'package:memomessenger/Activities/UserProfileActivity/Activity.dart';
 import 'package:memomessenger/Services/Chats.dart';
-import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/ChatsActivity.dart';
 
 class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -109,8 +108,6 @@ class ChatActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: theme,
-      builder: materialAppBuilder,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: SenderInfoAppBar(

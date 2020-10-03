@@ -19,7 +19,6 @@ class Main extends StatelessWidget {
           elevation: 0,
         ),
       ),
-      builder: materialAppBuilder,
       debugShowCheckedModeBanner: false,
       home: MemoMessenger(),
     );

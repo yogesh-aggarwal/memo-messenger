@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/Chat.dart';
 import 'package:memomessenger/Services/User.dart';
 
@@ -29,13 +28,13 @@ class ChatMessage extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(
-              isFromCurrentUser ? 0 : messageBorderRadius,
+              isFromCurrentUser ? 0 : 10,
             ),
             topLeft: Radius.circular(
-              isFromCurrentUser ? messageBorderRadius : 0,
+              isFromCurrentUser ? 10 : 0,
             ),
-            bottomLeft: Radius.circular(messageBorderRadius),
-            bottomRight: Radius.circular(messageBorderRadius),
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
           ),
           // boxShadow: isFromCurrentUser
           //     ? [
@@ -44,7 +43,6 @@ class ChatMessage extends StatelessWidget {
           //     : [
           //         BoxShadow(color: Color(0XFFCCCCCC), blurRadius: 10),
           //       ],
-          color: isFromCurrentUser ? themeAccentColor[500] : Color(0xFFEEEEEE),
         ),
         child: Column(
           children: [

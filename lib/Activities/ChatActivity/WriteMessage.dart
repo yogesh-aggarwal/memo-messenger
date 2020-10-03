@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Services/Chats.dart';
-import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/Chat.dart';
 import 'package:memomessenger/Services/User.dart';
 
@@ -19,7 +18,9 @@ class MessageAction extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
         padding: EdgeInsets.symmetric(vertical: 6, horizontal: 6),
-        child: Icon(icon, color: themeAccentColor[800]),
+        child: Icon(
+          icon,
+        ),
       ),
     );
   }
