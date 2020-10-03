@@ -1,7 +1,7 @@
 import 'package:memomessenger/Services/Types/Chat.dart';
 import 'package:memomessenger/Services/Types/Fundamental.dart';
 import 'package:memomessenger/Services/Types/MemoMessenger.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:rxdart/subjects.dart';
 
 BehaviorSubject<Map<String, Chat>> chatActivityChatList =
     new BehaviorSubject.seeded(
@@ -34,6 +34,11 @@ void sendMessage(String chatId, Message message) {
   chatActivityChatList.add(chats);
 }
 
-final BehaviorSubject<SectionEnum> currentSection = new BehaviorSubject.seeded(
-  SectionEnum.Favorites,
+void getSections() async {
+  sections.add(["Favorites", "Family", "Office"]);
+}
+
+final BehaviorSubject<List<String>> sections = new BehaviorSubject.seeded([]);
+final BehaviorSubject<String> currentSection = new BehaviorSubject.seeded(
+  "Favorites",
 );

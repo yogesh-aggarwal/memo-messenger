@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:memomessenger/Services/Types/MemoMessenger.dart';
-import 'package:rxdart/subjects.dart';
 
 TextStyle sectionTitleTextStyle() {
   return TextStyle(
@@ -16,6 +14,4 @@ TextStyle sectionTitleActiveTextStyle(BuildContext context) {
   );
 }
 
-final BehaviorSubject<SectionEnum> currentSection =
-    new BehaviorSubject.seeded(SectionEnum.Favorites);
 final EdgeInsetsGeometry sectionTitlePadding = EdgeInsets.only(right: 20);

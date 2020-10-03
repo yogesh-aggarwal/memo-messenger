@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:memomessenger/Activities/MemoMessenger/Activity.dart';
 import 'package:memomessenger/Services/Constants.dart';
+import 'package:memomessenger/Services/MemoMessenger.dart';
 
 void main() {
   runApp(Main());
@@ -22,5 +23,9 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MemoMessenger(),
     );
+  }
+
+  Main() {
+    getSections();
   }
 }

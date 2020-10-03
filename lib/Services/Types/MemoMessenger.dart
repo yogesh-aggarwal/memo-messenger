@@ -13,5 +13,3 @@ class Chat {
     @required this.messages,
   });
 }
-
-enum SectionEnum { Favorites, Family, Office }
