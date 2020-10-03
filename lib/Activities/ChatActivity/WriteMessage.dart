@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:memomessenger/Services/Chats.dart';
+import 'package:memomessenger/Services/MemoMessenger.dart';
 import 'package:memomessenger/Services/Types/Chat.dart';
 import 'package:memomessenger/Services/User.dart';
 
@@ -66,8 +66,10 @@ class MessageInputUI extends StatelessWidget {
           MessageAction(
             icon: Icons.send,
             onTap: () {
-              sendMessage(chatId,
-                  Message(text: textController.text, senderId: currentUserId));
+              sendMessage(
+                chatId,
+                Message(text: textController.text, senderId: currentUserId),
+              );
               textController.clear();
             },
           ),

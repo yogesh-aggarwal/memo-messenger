@@ -55,7 +55,7 @@ class MemoMessenger extends StatelessWidget {
                       quarterTurns: 3,
                       child: Icon(
                         LineAwesomeIcons.search,
-                        color: Colors.grey[500],
+                        color: Colors.grey[600],
                       ),
                     ),
                   ),

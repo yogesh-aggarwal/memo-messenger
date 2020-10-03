@@ -4,8 +4,8 @@ import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:memomessenger/Activities/ChatActivity/Messages.dart';
 import 'package:memomessenger/Activities/ChatActivity/WriteMessage.dart';
 import 'package:memomessenger/Activities/UserProfileActivity/Activity.dart';
-import 'package:memomessenger/Services/Chats.dart';
-import 'package:memomessenger/Services/Types/ChatsActivity.dart';
+import 'package:memomessenger/Services/MemoMessenger.dart';
+import 'package:memomessenger/Services/Types/MemoMessenger.dart';
 
 class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
