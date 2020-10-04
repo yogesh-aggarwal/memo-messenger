@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/Types/MemoMessenger.dart';
 
 class ChatWidget extends StatelessWidget {
@@ -8,8 +9,14 @@ class ChatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text("Chat"),
+    return InkWell(
+      onTap: () {
+        print("Open ${chat.id}");
+      },
+      child: Container(
+        padding: lrPadding,
+        child: Text(chat.sender.name),
+      ),
     );
   }
 }

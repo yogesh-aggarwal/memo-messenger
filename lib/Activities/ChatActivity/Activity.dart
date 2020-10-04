@@ -25,7 +25,7 @@ class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Expanded(
             child: StreamBuilder<Map<String, Chat>>(
-              stream: chatActivityChatList,
+              stream: chats,
               initialData: {},
               builder: (BuildContext context,
                   AsyncSnapshot<Map<String, Chat>> data) {
@@ -122,7 +122,7 @@ class ChatActivity extends StatelessWidget {
               children: [
                 Flexible(
                   child: StreamBuilder<Map<String, Chat>>(
-                    stream: chatActivityChatList,
+                    stream: chats,
                     initialData: {},
                     builder: (BuildContext context,
                         AsyncSnapshot<Map<String, Chat>> data) {

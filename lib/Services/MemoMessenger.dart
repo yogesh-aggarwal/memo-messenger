@@ -3,8 +3,7 @@ import 'package:memomessenger/Services/Types/Fundamental.dart';
 import 'package:memomessenger/Services/Types/MemoMessenger.dart';
 import 'package:rxdart/subjects.dart';
 
-BehaviorSubject<Map<String, Chat>> chatActivityChatList =
-    new BehaviorSubject.seeded(
+BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
   {
     "ULJQt9aNbxt00fi": Chat(
       id: "ULJQt9aNbxt00fi",
@@ -26,12 +25,10 @@ BehaviorSubject<Map<String, Chat>> chatActivityChatList =
 );
 
 void sendMessage(String chatId, Message message) {
-  Map<String, Chat> chats = chatActivityChatList.value;
-
-  Chat newData = chats[chatId];
+  Map<String, Chat> _chats = chats.value;
+  Chat newData = _chats[chatId];
   newData.messages.add(message);
-
-  chatActivityChatList.add(chats);
+  chats.add(_chats);
 }
 
 void getSections() async {

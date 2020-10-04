@@ -11,11 +11,11 @@ class SectionsWidget extends StatefulWidget {
 class _SectionsWidgetState extends State<SectionsWidget> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<List<String>>(
       initialData: sections.value,
       stream: sections.stream,
       builder: (context, sectionsValue) {
-        return StreamBuilder(
+        return StreamBuilder<String>(
           initialData: currentSection.value,
           stream: currentSection.stream,
           builder: (context, currentSectionValue) {
