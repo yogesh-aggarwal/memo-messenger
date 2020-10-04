@@ -11,6 +11,7 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
         Message(text: "Hello", senderId: "1"),
         Message(text: "Hello World!", senderId: "Gwi9iJzZ83lZPRvfI3YK"),
       ],
+      sectionName: "Favorites",
       sender: SenderUser(
         uid: "Sender ID",
         name: "John Doe",
@@ -32,10 +33,10 @@ void sendMessage(String chatId, Message message) {
 }
 
 void getSections() async {
-  sections.add(["Favorites", "Family", "Office"]);
+  sections.add(["All", "Favorites", "Family", "Office"]);
 }
 
 final BehaviorSubject<List<String>> sections = new BehaviorSubject.seeded([]);
 final BehaviorSubject<String> currentSection = new BehaviorSubject.seeded(
-  "Favorites",
+  "All",
 );
