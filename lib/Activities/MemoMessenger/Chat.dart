@@ -34,12 +34,11 @@ class ChatWidget extends StatelessWidget {
         ),
         leading: Container(
           margin: EdgeInsets.only(right: 2),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50),
-            child: Container(
-              width: 55,
-              height: 55,
-              color: Colors.grey[600],
+          child: Container(
+            width: 55,
+            height: 55,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
               child: BlurHash(
                 hash: chat.sender.profileImg.hash,
                 image: chat.sender.profileImg.url,

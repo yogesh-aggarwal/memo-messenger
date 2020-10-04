@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Activities/ChatActivity/Messages.dart';
 import 'package:memomessenger/Activities/ChatActivity/WriteMessage.dart';
 import 'package:memomessenger/Activities/UserProfileActivity/Activity.dart';
@@ -20,78 +21,79 @@ class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: StreamBuilder<Map<String, Chat>>(
-              stream: chats,
-              initialData: {},
-              builder: (BuildContext context,
-                  AsyncSnapshot<Map<String, Chat>> data) {
-                if (data.hasData && data.data[chatId] != null) {
-                  final Chat chat = data.data[chatId];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (BuildContext context) {
-                            return UserProfileActivity(
-                              userId: "Hello",
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Container(
-                          width: 45,
-                          height: 45,
-                          child: BlurHash(
-                            hash: chat.sender.profileImg.hash,
-                            image: chat.sender.profileImg.url,
-                          ),
-                        ),
+      child: StreamBuilder<Map<String, Chat>>(
+        stream: chats.stream,
+        initialData: {},
+        builder: (context, data) {
+          final Map<String, Chat> chats = data.data;
+          final Chat currentChat = chats[chatId];
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (BuildContext context) {
+                          return UserProfileActivity(
+                            userId: "Hello",
+                          );
+                        },
                       ),
-                      title: Text(
-                        chat.sender.name,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 20,
-                        ),
-                      ),
-                      subtitle: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.only(right: 5),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.green,
-                            ),
-                            width: 10,
-                            height: 10,
-                          ),
-                          Text("Active"),
-                        ],
-                      ),
+                    );
+                  },
+                  trailing: IconButton(
+                    icon: Icon(
+                      LineAwesomeIcons.arrow_left,
+                      color: Colors.black,
                     ),
-                  );
-                } else {
-                  return Text("No Data");
-                }
-              },
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context, rootNavigator: true).pop();
-            },
-          ),
-        ],
+                    onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                    },
+                  ),
+                  title: Text(
+                    currentChat.sender.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Active now",
+                    style: TextStyle(
+                        color: Colors.green, fontWeight: FontWeight.w700),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: chats.keys.length,
+                  itemBuilder: (context, index) {
+                    final Chat _currentChat =
+                        chats[chats.keys.elementAt(index)];
+                    return Container(
+                      width: 55,
+                      height: 55,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: BlurHash(
+                          hash: _currentChat.sender.profileImg.hash,
+                          image: _currentChat.sender.profileImg.url,
+                          imageFit: BoxFit.cover,
+                          duration: Duration(milliseconds: 200),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
@@ -111,7 +113,7 @@ class ChatActivity extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: SenderInfoAppBar(
-          height: 70,
+          height: 180,
           chatId: chatId,
         ),
         body: SafeArea(

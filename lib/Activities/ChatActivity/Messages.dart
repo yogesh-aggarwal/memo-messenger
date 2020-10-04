@@ -20,36 +20,25 @@ class ChatMessage extends StatelessWidget {
       alignment:
           isFromCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 2),
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        margin: EdgeInsets.symmetric(vertical: 3),
+        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 20),
         constraints: BoxConstraints(
           maxWidth: MediaQuery.of(context).size.width * .75,
         ),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(
-              isFromCurrentUser ? 0 : 10,
-            ),
-            topLeft: Radius.circular(
-              isFromCurrentUser ? 10 : 0,
-            ),
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10),
-          ),
-          // boxShadow: isFromCurrentUser
-          //     ? [
-          //         BoxShadow(color: themeAccentColor[300], blurRadius: 10),
-          //       ]
-          //     : [
-          //         BoxShadow(color: Color(0XFFCCCCCC), blurRadius: 10),
-          //       ],
+          borderRadius: BorderRadius.circular(10),
+          border: !isFromCurrentUser
+              ? Border.all(color: Colors.grey[300], width: 2)
+              : null,
+          color: isFromCurrentUser ? Color(0xFFE7E7EC) : Colors.transparent,
         ),
         child: Column(
           children: [
             Text(
               message.text,
               style: TextStyle(
-                color: isFromCurrentUser ? Colors.white : Colors.black,
+                color: Colors.black,
+                fontSize: 16,
               ),
             ),
           ],
@@ -68,21 +57,24 @@ class ChatMessages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final String currentUserId = currentUser.value.id;
-    return SingleChildScrollView(
-      reverse: true,
-      padding: EdgeInsets.symmetric(vertical: 10),
-      physics: BouncingScrollPhysics(),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          verticalDirection: VerticalDirection.up,
-          children: messages.reversed.map((Message message) {
-            return ChatMessage(
-              context: context,
-              message: message,
-              currentUserId: currentUserId,
-            );
-          }).toList(),
+    return Container(
+      margin: EdgeInsets.only(top: 15),
+      child: SingleChildScrollView(
+        reverse: true,
+        padding: EdgeInsets.symmetric(vertical: 10),
+        physics: BouncingScrollPhysics(),
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            verticalDirection: VerticalDirection.up,
+            children: messages.reversed.map((Message message) {
+              return ChatMessage(
+                context: context,
+                message: message,
+                currentUserId: currentUserId,
+              );
+            }).toList(),
+          ),
         ),
       ),
     );
