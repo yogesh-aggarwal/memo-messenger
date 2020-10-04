@@ -15,14 +15,17 @@ class _SectionsWidgetState extends State<SectionsWidget> {
       initialData: sections.value,
       stream: sections.stream,
       builder: (context, sectionsValue) {
-        print(sectionsValue.data);
         return StreamBuilder(
           initialData: currentSection.value,
           stream: currentSection.stream,
           builder: (context, currentSectionValue) {
-            return Expanded(
+            return SizedBox(
+              width: double.infinity,
+              height: 20,
               child: ListView.builder(
+                shrinkWrap: true,
                 padding: lrPadding,
+                physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemCount: sectionsValue.data.length,
                 itemBuilder: (context, index) {
