@@ -19,7 +19,6 @@ class _SectionsWidgetState extends State<SectionsWidget> {
           initialData: currentSection.value,
           stream: currentSection.stream,
           builder: (context, currentSectionValue) {
-            print(currentSection.value);
             return SizedBox(
               width: double.infinity,
               height: 20,

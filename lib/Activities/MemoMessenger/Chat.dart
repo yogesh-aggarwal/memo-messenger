@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:memomessenger/Activities/ChatActivity/Activity.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/MemoMessenger.dart';
 import 'package:memomessenger/Services/Types/MemoMessenger.dart';
@@ -11,11 +13,19 @@ class ChatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(currentSection.value);
     if (currentSection.value == "All" ||
         chat.sectionName == currentSection.value) {
       return ListTile(
         onTap: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              maintainState: true,
+              builder: (context) {
+                return ChatActivity(chatId: chat.id);
+              },
+            ),
+          );
           print("Open: ${chat.id}");
         },
         contentPadding: EdgeInsets.symmetric(
@@ -34,7 +44,7 @@ class ChatWidget extends StatelessWidget {
                 hash: chat.sender.profileImg.hash,
                 image: chat.sender.profileImg.url,
                 imageFit: BoxFit.cover,
-                duration: Duration(milliseconds: 20),
+                duration: Duration(milliseconds: 200),
               ),
             ),
           ),
