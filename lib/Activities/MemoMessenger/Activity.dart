@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Activities/MemoMessenger/Chats.dart';
 import 'package:memomessenger/Activities/MemoMessenger/Sections.dart';
+import 'package:memomessenger/Activities/MemoMessenger/changeAccount.dart';
 import 'package:memomessenger/Services/Constants.dart';
 
 class MemoMessenger extends StatelessWidget {
@@ -18,7 +19,14 @@ class MemoMessenger extends StatelessWidget {
                 padding: lrPadding,
                 alignment: Alignment.topRight,
                 child: GestureDetector(
-                  onTap: () {},
+                  onLongPress: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return ChangeAccount();
+                      },
+                    );
+                  },
                   child: Icon(
                     LineAwesomeIcons.user,
                     size: 30,
