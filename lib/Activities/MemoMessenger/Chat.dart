@@ -14,20 +14,24 @@ class ChatWidget extends StatelessWidget {
   ChatWidget({@required this.chat});
 
   Widget chatText({@required String content, @required IconData icon}) {
-    return Row(
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 5),
-          child: Icon(icon, size: 16),
-        ),
-        Expanded(
-          child: Text(
-            content,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+    return Container(
+      margin: EdgeInsets.only(top: 2),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.only(right: 5),
+            child: Icon(icon, size: 16),
           ),
-        )
-      ],
+          Expanded(
+            child: Text(
+              content,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -36,8 +40,29 @@ class ChatWidget extends StatelessWidget {
     if (message.text != null) {
       return chatText(content: message.text, icon: LineAwesomeIcons.sms);
     }
+    if (message.audio != null) {
+      return chatText(content: "Audio", icon: LineAwesomeIcons.headphones);
+    }
+    if (message.video != null) {
+      return chatText(content: "Video", icon: LineAwesomeIcons.video_1);
+    }
+    if (message.image != null) {
+      return chatText(content: "Image", icon: LineAwesomeIcons.image);
+    }
     if (message.apk != null) {
-      return chatText(content: "APK file", icon: LineAwesomeIcons.android);
+      return chatText(content: "APK", icon: LineAwesomeIcons.android);
+    }
+    if (message.doc != null) {
+      return chatText(content: "Document", icon: LineAwesomeIcons.file_invoice);
+    }
+    if (message.contact != null) {
+      return chatText(content: "Contact", icon: LineAwesomeIcons.address_card);
+    }
+    if (message.location != null) {
+      return chatText(content: "Location", icon: LineAwesomeIcons.map_marker);
+    }
+    if (message.poll != null) {
+      return chatText(content: "Poll", icon: LineAwesomeIcons.poll);
     }
 
     return Container(child: Text("Message"));

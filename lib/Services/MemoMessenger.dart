@@ -191,7 +191,8 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
         Message(
           senderId: "Gwi9iJzZ83lZPRvfI3YK",
           sentAt: DateTime.now(),
-          apk: "file"),
+          poll: "file",
+        ),
       ],
       sectionName: "Favorites",
       sender: SenderUser(
