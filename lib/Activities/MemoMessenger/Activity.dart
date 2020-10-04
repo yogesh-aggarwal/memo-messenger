@@ -22,6 +22,12 @@ class MemoMessenger extends StatelessWidget {
                   onLongPress: () {
                     showModalBottomSheet(
                       context: context,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
                       builder: (context) {
                         return ChangeAccount();
                       },
