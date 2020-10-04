@@ -19,14 +19,16 @@ class ChatWidget extends StatelessWidget {
           print("Open: ${chat.id}");
         },
         contentPadding: EdgeInsets.symmetric(
-            vertical: 5, horizontal: lrPadding.horizontal / 2),
+          vertical: 5,
+          horizontal: lrPadding.horizontal / 2,
+        ),
         leading: Container(
           margin: EdgeInsets.only(right: 2),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
             child: Container(
-              width: 50,
-              height: 50,
+              width: 55,
+              height: 55,
               color: Colors.grey[600],
               child: BlurHash(
                 hash: chat.sender.profileImg.hash,
@@ -37,8 +39,12 @@ class ChatWidget extends StatelessWidget {
             ),
           ),
         ),
-        title: Text(chat.sender.name),
+        title: Text(
+          chat.sender.name,
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
         subtitle: Text(chat.messages.last.text),
+        trailing: Text(chat.messages.last.sentAt.toString()),
       );
     } else {
       return Container();

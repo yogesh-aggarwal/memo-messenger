@@ -8,8 +8,16 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
     "ULJQt9aNbxt00fi": Chat(
       id: "ULJQt9aNbxt00fi",
       messages: [
-        Message(text: "Hello", senderId: "1"),
-        Message(text: "Hello World!", senderId: "Gwi9iJzZ83lZPRvfI3YK"),
+        Message(
+          text: "Hello!",
+          senderId: "Sender ID",
+          sentAt: DateTime.now(),
+        ),
+        Message(
+          text: "Hello World!",
+          senderId: "Gwi9iJzZ83lZPRvfI3YK",
+          sentAt: DateTime.now(),
+        ),
       ],
       sectionName: "Favorites",
       sender: SenderUser(
