@@ -27,73 +27,81 @@ class SenderInfoAppBar extends StatelessWidget implements PreferredSizeWidget {
         initialData: {},
         builder: (context, data) {
           final Map<String, Chat> chats = data.data;
-          final Chat currentChat = chats[chatId];
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: ListTile(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (BuildContext context) {
-                          return UserProfileActivity(
-                            userId: "Hello",
-                          );
-                        },
-                      ),
-                    );
-                  },
-                  trailing: IconButton(
-                    icon: Icon(
-                      LineAwesomeIcons.arrow_left,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop();
-                    },
-                  ),
-                  title: Text(
-                    currentChat.sender.name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                    ),
-                  ),
-                  subtitle: Text(
-                    "Active now",
-                    style: TextStyle(
-                        color: Colors.green, fontWeight: FontWeight.w700),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: chats.keys.length,
-                  itemBuilder: (context, index) {
-                    final Chat _currentChat =
-                        chats[chats.keys.elementAt(index)];
-                    return Container(
-                      width: 55,
-                      height: 55,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: BlurHash(
-                          hash: _currentChat.sender.profileImg.hash,
-                          image: _currentChat.sender.profileImg.url,
-                          imageFit: BoxFit.cover,
-                          duration: Duration(milliseconds: 200),
+          if (chats.isNotEmpty) {
+            final Chat currentChat = chats[chatId];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (BuildContext context) {
+                            return UserProfileActivity(
+                              userId: "Hello",
+                            );
+                          },
                         ),
+                      );
+                    },
+                    trailing: IconButton(
+                      icon: Icon(
+                        LineAwesomeIcons.arrow_left,
+                        color: Colors.black,
                       ),
-                    );
-                  },
+                      onPressed: () {
+                        Navigator.of(context, rootNavigator: true).pop();
+                      },
+                    ),
+                    title: Text(
+                      currentChat.sender.name,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "Active now",
+                      style: TextStyle(
+                          color: Colors.green, fontWeight: FontWeight.w600),
+                    ),
+                  ),
                 ),
-              )
-            ],
-          );
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: chats.keys.length,
+                      itemBuilder: (context, index) {
+                        final Chat _currentChat =
+                            chats[chats.keys.elementAt(index)];
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                            width: 60,
+                            height: 60,
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: BlurHash(
+                              hash: _currentChat.sender.profileImg.hash,
+                              image: _currentChat.sender.profileImg.url,
+                              imageFit: BoxFit.fitWidth,
+                              duration: Duration(milliseconds: 200),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Container();
+          }
         },
       ),
     );
@@ -123,7 +131,7 @@ class ChatActivity extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: SenderInfoAppBar(
-          height: 180,
+          height: 150,
           chatId: chatId,
         ),
         body: SafeArea(

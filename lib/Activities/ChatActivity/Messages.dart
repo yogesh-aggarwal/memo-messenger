@@ -58,10 +58,10 @@ class ChatMessages extends StatelessWidget {
   Widget build(BuildContext context) {
     final String currentUserId = currentUser.value.id;
     return Container(
-      margin: EdgeInsets.only(top: 15),
+      margin: EdgeInsets.only(top: 10),
       child: SingleChildScrollView(
         reverse: true,
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.only(bottom: 15),
         physics: BouncingScrollPhysics(),
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 10),
