@@ -17,10 +17,9 @@ class MessageAction extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(40)),
+        margin: EdgeInsets.only(bottom: 6),
         padding: EdgeInsets.symmetric(vertical: 6, horizontal: 6),
-        child: Icon(
-          icon,
-        ),
+        child: Icon(icon),
       ),
     );
   }
@@ -38,40 +37,67 @@ class MessageInputUI extends StatelessWidget {
     TextEditingController textController = new TextEditingController();
 
     return Container(
-      margin: EdgeInsets.only(top: 5),
-      padding: EdgeInsets.only(top: 2, bottom: 2, left: 5, right: 2),
+      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: EdgeInsets.symmetric(horizontal: 5),
+      decoration: BoxDecoration(
+        color: Color(0xFFEAEDF1),
+        borderRadius: BorderRadius.circular(20),
+      ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           MessageAction(icon: LineAwesomeIcons.camera, onTap: () {}),
           MessageAction(icon: LineAwesomeIcons.photo_video, onTap: () {}),
           MessageAction(icon: LineAwesomeIcons.microphone, onTap: () {}),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 5),
+          Expanded(
             child: Container(
-              width: MediaQuery.of(context).size.width - 42 - 42 - 42 - 42,
-              // height: 20,
-              child: TextField(
-                controller: textController,
-                decoration: const InputDecoration(
-                  hintText: "Convey your message",
-                  border: InputBorder.none,
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              child: Container(
+                // height: 20,
+                child: TextField(
+                  controller: textController,
+                  decoration: const InputDecoration(
+                    hintText: "Convey your message",
+                    border: InputBorder.none,
+                  ),
+                  autocorrect: true,
+                  // autofocus: true,
+                  maxLines: null,
+                  keyboardType: TextInputType.multiline,
                 ),
-                autocorrect: true,
-                // autofocus: true,
-                keyboardType: TextInputType.multiline,
               ),
             ),
           ),
-          MessageAction(
-            icon: Icons.send,
+
+          /// Send message
+          GestureDetector(
             onTap: () {
-              sendMessage(
-                chatId,
-                Message(text: textController.text, senderId: currentUserId),
-              );
-              textController.clear();
+              if (textController.text.trim().isNotEmpty) {
+                sendMessage(
+                  chatId,
+                  Message(text: textController.text, senderId: currentUserId),
+                );
+                textController.clear();
+              }
             },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(40),
+                boxShadow: [
+                  BoxShadow(
+                      color: Theme.of(context).accentColor,
+                      blurRadius: 60,
+                      spreadRadius: 2),
+                ],
+              ),
+              margin: EdgeInsets.only(bottom: 6),
+              padding: EdgeInsets.symmetric(vertical: 6, horizontal: 6),
+              child: Icon(
+                Icons.arrow_upward,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),

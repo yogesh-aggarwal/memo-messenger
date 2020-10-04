@@ -1,15 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Activities/ChatActivity/Activity.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/MemoMessenger.dart';
+import 'package:memomessenger/Services/Types/Chat.dart';
 import 'package:memomessenger/Services/Types/MemoMessenger.dart';
 
 class ChatWidget extends StatelessWidget {
   final Chat chat;
 
   ChatWidget({@required this.chat});
+
+  Widget chatText({@required String content, @required IconData icon}) {
+    return Row(
+      children: [
+        Container(
+          margin: EdgeInsets.only(right: 5),
+          child: Icon(icon, size: 16),
+        ),
+        Expanded(
+          child: Text(
+            content,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget chatMessageText() {
+    Message message = chat.messages.last;
+    if (message.text != null) {
+      return chatText(content: message.text, icon: LineAwesomeIcons.sms);
+    }
+    if (message.apk != null) {
+      return chatText(content: "APK file", icon: LineAwesomeIcons.android);
+    }
+
+    return Container(child: Text("Message"));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +84,7 @@ class ChatWidget extends StatelessWidget {
           chat.sender.name,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
-        subtitle: Text(chat.messages.last.text),
+        subtitle: chatMessageText(),
         trailing: Text(chat.messages.last.sentAt.toString()),
       );
     } else {

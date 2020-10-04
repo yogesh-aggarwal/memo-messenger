@@ -5,6 +5,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:memomessenger/Activities/ChatActivity/Messages.dart';
 import 'package:memomessenger/Activities/ChatActivity/WriteMessage.dart';
 import 'package:memomessenger/Activities/UserProfileActivity/Activity.dart';
+import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/MemoMessenger.dart';
 import 'package:memomessenger/Services/Types/MemoMessenger.dart';
 
@@ -110,6 +111,15 @@ class ChatActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        accentColor: themeAccentColor,
+        accentColorBrightness: Brightness.light,
+        fontFamily: "Poppins",
+        appBarTheme: AppBarTheme(
+          color: themeAccentColor,
+          elevation: 0,
+        ),
+      ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: SenderInfoAppBar(
