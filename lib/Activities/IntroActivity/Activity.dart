@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:memomessenger/Activities/SignupActivity/Activity.dart';
 import 'package:memomessenger/Services/Constants.dart';
 
 class IntroActivity extends StatelessWidget {
@@ -56,6 +58,11 @@ class IntroActivity extends StatelessWidget {
                           ),
                           onPressed: () {
                             print("Get Started");
+                            Navigator.of(context).push(CupertinoPageRoute(
+                              builder: (context) {
+                                return SignupActivity();
+                              },
+                            ));
                           },
                           child: Text(
                             "Get Started",
