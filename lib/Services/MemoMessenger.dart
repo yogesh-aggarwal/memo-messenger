@@ -14,7 +14,7 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
           sentAt: DateTime.now(),
         ),
         Message(
-          text: "Hello World!",
+          text: "Hello World! 1",
           senderId: "Gwi9iJzZ83lZPRvfI3YK",
           sentAt: DateTime.now(),
         ),
@@ -22,7 +22,7 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
       sectionName: "Favorites",
       sender: SenderUser(
         uid: "Sender ID",
-        name: "John Doe",
+        name: "Person 1",
         profileImg: ImageWithHash(
           hash: "ULJQ+t9aNbxt00fi%2WB.8ofi_S2IUj[WBfP",
           url: "https://bit.ly/3bEm39U",
@@ -31,7 +31,7 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
       ),
     ),
     "ULJQta9aNbxt00fi": Chat(
-      id: "ULJQt9aNbxt00fi",
+      id: "ULJQta9aNbxt00fi",
       messages: [
         Message(
           text: "Hello!",
@@ -39,7 +39,7 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
           sentAt: DateTime.now(),
         ),
         Message(
-          text: "Hello World!",
+          text: "Hello World! 2",
           senderId: "Gwi9iJzZ83lZPRvfI3YK",
           sentAt: DateTime.now(),
         ),
@@ -47,7 +47,7 @@ BehaviorSubject<Map<String, Chat>> chats = new BehaviorSubject.seeded(
       sectionName: "Family",
       sender: SenderUser(
         uid: "Sender ID",
-        name: "John Doe",
+        name: "Person 2",
         profileImg: ImageWithHash(
           hash: "ULJQ+t9aNbxt00fi%2WB.8ofi_S2IUj[WBfP",
           url: "https://bit.ly/3bEm39U",
