@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:memomessenger/Activities/MemoMessenger/Activity.dart';
+import 'package:memomessenger/Activities/IntroActivity/Activity.dart';
 import 'package:memomessenger/Services/Constants.dart';
 import 'package:memomessenger/Services/MemoMessenger.dart';
 
@@ -21,7 +21,7 @@ class Main extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: MemoMessenger(),
+      home: IntroActivity(),
     );
   }
 

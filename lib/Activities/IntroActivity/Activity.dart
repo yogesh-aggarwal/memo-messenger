@@ -47,7 +47,7 @@ class IntroActivity extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FlatButton(
-                          padding: EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(vertical: 20),
                           color: Theme.of(context).accentColor,
                           minWidth: MediaQuery.of(context).size.width -
                               lrPadding.horizontal,
